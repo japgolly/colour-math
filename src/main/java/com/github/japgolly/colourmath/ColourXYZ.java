@@ -44,7 +44,11 @@ public class ColourXYZ extends ColourAdapter {
 		g = (g > 0.0031308) ? 1.055 * Math.pow(g, 1.0 / 2.4) - 0.055 : 12.92 * g;
 		b = (b > 0.0031308) ? 1.055 * Math.pow(b, 1.0 / 2.4) - 0.055 : 12.92 * b;
 
-		return new ColourRGB01((float) r, (float) g, (float) b);
+		float fr = Math.max(0f, Math.min(1.0f, (float) r));
+		float fg = Math.max(0f, Math.min(1.0f, (float) g));
+		float fb = Math.max(0f, Math.min(1.0f, (float) b));
+
+		return new ColourRGB01(fr, fg, fb);
 	}
 
 	@Override
