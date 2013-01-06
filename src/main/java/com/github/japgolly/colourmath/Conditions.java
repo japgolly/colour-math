@@ -7,9 +7,15 @@ package com.github.japgolly.colourmath;
  */
 class Conditions {
 
-	public static void assert100(float v) {
-		if (v < 0f || v > 100f) {
+	public static void assert100(double v) {
+		if (v < 0. || v > 100.) {
 			throw err("Illegal value: %f. Valid range is [0,100].", v);
+		}
+	}
+
+	public static void assert128_127(double a, double b) {
+		if (a < -128. || a > 127. || b < -128. || b > 127.) {
+			throw err("Illegal value(s): %f,%f. Valid range is [-128,127].", a, b);
 		}
 	}
 

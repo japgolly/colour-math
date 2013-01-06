@@ -3,7 +3,6 @@ package com.github.japgolly.colourmath;
 import javax.annotation.concurrent.Immutable;
 import javax.annotation.concurrent.ThreadSafe;
 
-
 /**
  * TODOC: com.github.japgolly.colourmath.Colour
  * 
@@ -31,5 +30,5 @@ public interface Colour {
 
 	ColourLAB lab();
 
-	float deltaE_94(Colour otherColour);
+	double deltaE_94(Colour otherColour);
 }

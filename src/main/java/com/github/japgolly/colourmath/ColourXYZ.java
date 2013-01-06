@@ -15,9 +15,9 @@ import lombok.experimental.Wither;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class ColourXYZ extends ColourAdapter {
-	@Wither public final float x, y, z;
+	@Wither public final double x, y, z;
 
-	ColourXYZ(float x, float y, float z) {
+	ColourXYZ(double x, double y, double z) {
 		// TODO xyz range?
 		this.x = x;
 		this.y = y;
@@ -32,35 +32,35 @@ public class ColourXYZ extends ColourAdapter {
 	@Override
 	public ColourRGB01 rgb01() {
 		// TODO light hardcoded
-		float _x = x / 95.047f;
-		float _y = y / 100f;
-		float _z = z / 108.883f;
+		double _x = x / 95.047;
+		double _y = y / 100.0;
+		double _z = z / 108.883;
 
-		float r = _x * 3.2406f + _y * -1.5372f + _z * -0.4986f;
-		float g = _x * -0.9689f + _y * 1.8758f + _z * 0.0415f;
-		float b = _x * 0.0557f + _y * -0.2040f + _z * 1.0570f;
+		double r = _x * 3.2406 + _y * -1.5372 + _z * -0.4986;
+		double g = _x * -0.9689 + _y * 1.8758 + _z * 0.0415;
+		double b = _x * 0.0557 + _y * -0.2040 + _z * 1.0570;
 
-		r = (r > 0.0031308f) ? 1.055f * (float) Math.pow(r, 1f / 2.4f) - 0.055f : 12.92f * r;
-		g = (g > 0.0031308f) ? 1.055f * (float) Math.pow(g, 1f / 2.4f) - 0.055f : 12.92f * g;
-		b = (b > 0.0031308f) ? 1.055f * (float) Math.pow(b, 1f / 2.4f) - 0.055f : 12.92f * b;
+		r = (r > 0.0031308) ? 1.055 * Math.pow(r, 1.0 / 2.4) - 0.055 : 12.92 * r;
+		g = (g > 0.0031308) ? 1.055 * Math.pow(g, 1.0 / 2.4) - 0.055 : 12.92 * g;
+		b = (b > 0.0031308) ? 1.055 * Math.pow(b, 1.0 / 2.4) - 0.055 : 12.92 * b;
 
-		return new ColourRGB01(r, g, b);
+		return new ColourRGB01((float) r, (float) g, (float) b);
 	}
 
 	@Override
 	public ColourLAB lab() {
 		// TODO light hardcoded
-		float _x = x / 95.047f;
-		float _y = y / 100f;
-		float _z = z / 108.883f;
+		double _x = x / 95.047;
+		double _y = y / 100.0;
+		double _z = z / 108.883;
 
-		_x = (_x > 0.008856f) ? (float) Math.pow(_x, 1f / 3f) : 7.787f * _x + 16f / 116f;
-		_y = (_y > 0.008856f) ? (float) Math.pow(_y, 1f / 3f) : 7.787f * _y + 16f / 116f;
-		_z = (_z > 0.008856f) ? (float) Math.pow(_z, 1f / 3f) : 7.787f * _z + 16f / 116f;
+		_x = (_x > ColourLAB.V_00886) ? Math.pow(_x, 1.0 / 3.0) : ColourLAB.V7_787 * _x + ColourLAB.V_16_116;
+		_y = (_y > ColourLAB.V_00886) ? Math.pow(_y, 1.0 / 3.0) : ColourLAB.V7_787 * _y + ColourLAB.V_16_116;
+		_z = (_z > ColourLAB.V_00886) ? Math.pow(_z, 1.0 / 3.0) : ColourLAB.V7_787 * _z + ColourLAB.V_16_116;
 
-		float l = 116f * _y - 16f;
-		float a = 500f * (_x - _y);
-		float b = 200f * (_y - _z);
+		double l = 116.0 * _y - 16.0;
+		double a = 500.0 * (_x - _y);
+		double b = 200.0 * (_y - _z);
 
 		return new ColourLAB(l, a, b);
 	}

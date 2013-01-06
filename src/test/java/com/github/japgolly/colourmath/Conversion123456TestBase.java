@@ -121,7 +121,7 @@ public abstract class Conversion123456TestBase {
 	}
 
 	protected void assertXYZ(float x, float y, float z) {
-		final Offset<Float> tolerance = offset(.0005f);
+		final Offset<Double> tolerance = offset(.0005);
 		final ColourXYZ c2 = c.xyz();
 		assertThat(c2.x).isEqualTo(x, tolerance);
 		assertThat(c2.y).isEqualTo(y, tolerance);
@@ -129,7 +129,7 @@ public abstract class Conversion123456TestBase {
 	}
 
 	protected void assertLAB(float l, float a, float b) {
-		final Offset<Float> tolerance = offset(.0005f);
+		final Offset<Double> tolerance = offset(.0005);
 		final ColourLAB c2 = c.lab();
 		assertThat(c2.l).isEqualTo(l, tolerance);
 		assertThat(c2.a).isEqualTo(a, tolerance);

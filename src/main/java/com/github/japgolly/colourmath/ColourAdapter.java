@@ -1,6 +1,5 @@
 package com.github.japgolly.colourmath;
 
-
 /**
  * TODOC: com.github.japgolly.colourmath.ColourAdapter
  * 
@@ -53,7 +52,7 @@ abstract class ColourAdapter implements Colour {
 	}
 
 	@Override
-	public float deltaE_94(Colour otherColour) {
+	public double deltaE_94(Colour otherColour) {
 		return lab().deltaE_94(otherColour);
 	}
 }
