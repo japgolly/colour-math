@@ -34,10 +34,6 @@ public class ColourLAB extends ColourAdapter {
 		return xyz().rgb01();
 	}
 
-	static final double V_16_116 = 16.0 / 116.0;
-	static final double V_00886 = Math.pow(6.0 / 29.0, 3); // 0.008856451679035631
-	static final double V7_787 = Math.pow(29.0 / 6.0, 2.0) / 3.0; // 7.787037037037035
-
 	@Override
 	public ColourXYZ xyz(Illuminant illuminant) {
 		double y = (l + 16.0) / 116.0;
@@ -48,9 +44,9 @@ public class ColourLAB extends ColourAdapter {
 		final double y3 = Math.pow(y, 3);
 		final double z3 = Math.pow(z, 3);
 
-		x = (x3 > V_00886) ? x3 : (x - V_16_116) / V7_787;
-		y = (y3 > V_00886) ? y3 : (y - V_16_116) / V7_787;
-		z = (z3 > V_00886) ? z3 : (z - V_16_116) / V7_787;
+		x = (x3 > DIV_6_29_CUBED) ? x3 : (x - DIV_16_116) / DIV_29_6_SQR_DIV_3;
+		y = (y3 > DIV_6_29_CUBED) ? y3 : (y - DIV_16_116) / DIV_29_6_SQR_DIV_3;
+		z = (z3 > DIV_6_29_CUBED) ? z3 : (z - DIV_16_116) / DIV_29_6_SQR_DIV_3;
 
 		x *= this.illuminant.X();
 		y *= this.illuminant.Y();

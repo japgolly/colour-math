@@ -8,7 +8,7 @@ import com.github.japgolly.colourmath.illuminant.Illuminants;
  * 
  * @since 06/01/2013
  */
-abstract class ColourAdapter implements Colour {
+abstract class ColourAdapter implements Colour, Consts {
 
 	@Override
 	public int argb() {

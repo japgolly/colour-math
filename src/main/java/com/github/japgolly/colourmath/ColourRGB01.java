@@ -7,7 +7,7 @@ import lombok.ToString;
 import lombok.experimental.Wither;
 
 import com.github.japgolly.colourmath.illuminant.Illuminant;
-import com.github.japgolly.colourmath.illuminant.Illuminants;
+import com.github.japgolly.colourmath.illuminant.Illuminants.CIE1931;
 
 /**
  * TODOC: com.github.japgolly.colourmath.ColourRGB
@@ -61,9 +61,6 @@ public class ColourRGB01 extends ColourAdapter {
 		return new ColourHSL01(h, s, l);
 	}
 
-	private static final double[][] sRGB_TO_XYZ = { { 0.4124564, 0.3575761, 0.1804375 },
-			{ 0.2126729, 0.7151522, 0.0721750 }, { 0.0193339, 0.1191920, 0.9503041 } };
-
 	@Override
 	public ColourXYZ xyz(Illuminant illuminant) {
 		double r = this.r;
@@ -82,7 +79,7 @@ public class ColourRGB01 extends ColourAdapter {
 		double y = MatrixMath.multiplyRow(sRGB_TO_XYZ[1], r, g, b);
 		double z = MatrixMath.multiplyRow(sRGB_TO_XYZ[2], r, g, b);
 
-		final ColourXYZ c = new ColourXYZ(x, y, z, Illuminants.CIE1931.D65);
+		final ColourXYZ c = new ColourXYZ(x, y, z, CIE1931.D65);
 
 		return c.illuminant.equals(illuminant) ? c : c.xyz(illuminant);
 	}
