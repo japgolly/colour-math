@@ -1,11 +1,15 @@
 package com.github.japgolly.colourmath;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+
 /**
  * TODOC: com.github.japgolly.colourmath.Conditions
  * 
  * @since 06/01/2013
  */
-class Conditions {
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+final class Conditions {
 
 	public static void assert100(double v) {
 		if (v < 0. || v > 100.) {

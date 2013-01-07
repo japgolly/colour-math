@@ -1,11 +1,15 @@
 package com.github.japgolly.colourmath;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+
 /**
  * TODOC: com.github.japgolly.colourmath.MatrixMath
  * 
  * @since 07/01/2013
  */
-class MatrixMath {
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+final class MatrixMath {
 
 	public static double multiplyRow(double[] mRow, double a, double b, double c) {
 		return a * mRow[0] + b * mRow[1] + c * mRow[2];
