@@ -4,7 +4,6 @@ import javax.annotation.concurrent.Immutable;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 /**
  * TODOC: com.github.japgolly.colourmath.illuminant.IlluminantImpl
@@ -13,10 +12,10 @@ import lombok.ToString;
  */
 @Immutable
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "name")
 public class IlluminantImpl implements Illuminant {
 
+	private final String name;
 	private final double Y, x, y, X, Z;
 
 	@Override
@@ -42,5 +41,10 @@ public class IlluminantImpl implements Illuminant {
 	@Override
 	public double Z() {
 		return Z;
+	}
+
+	@Override
+	public String toString() {
+		return name;
 	}
 }
