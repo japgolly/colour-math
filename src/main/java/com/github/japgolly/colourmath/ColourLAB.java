@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Wither;
 
+import com.github.japgolly.colourmath.illuminant.Illuminant;
+
 /**
  * TODOC: com.github.japgolly.colourmath.ColourXyz
  * 
@@ -16,18 +18,15 @@ import lombok.experimental.Wither;
 @EqualsAndHashCode(callSuper = false)
 public class ColourLAB extends ColourAdapter {
 	@Wither public final double l, a, b;
+	public final Illuminant illuminant;
 
-	ColourLAB(double l, double a, double b) {
+	ColourLAB(double l, double a, double b, Illuminant illuminant) {
 		Conditions.assert100(l);
 		Conditions.assert128_127(a, b);
 		this.l = l;
 		this.a = a;
 		this.b = b;
-	}
-
-	@Override
-	public ColourLAB lab() {
-		return this;
+		this.illuminant = illuminant;
 	}
 
 	@Override
@@ -40,7 +39,7 @@ public class ColourLAB extends ColourAdapter {
 	static final double V7_787 = Math.pow(29.0 / 6.0, 2.0) / 3.0; // 7.787037037037035
 
 	@Override
-	public ColourXYZ xyz() {
+	public ColourXYZ xyz(Illuminant illuminant) {
 		double y = (l + 16.0) / 116.0;
 		double x = a / 500.0 + y;
 		double z = y - b / 200.0;
@@ -53,12 +52,19 @@ public class ColourLAB extends ColourAdapter {
 		y = (y3 > V_00886) ? y3 : (y - V_16_116) / V7_787;
 		z = (z3 > V_00886) ? z3 : (z - V_16_116) / V7_787;
 
-		// TODO light hardcoded
-		x *= 95.047;
-		y *= 100.0;
-		z *= 108.883;
+		x *= this.illuminant.X();
+		y *= this.illuminant.Y();
+		z *= this.illuminant.Z();
 
-		return new ColourXYZ(x, y, z);
+		return new ColourXYZ(x, y, z, this.illuminant).xyz(illuminant);
+	}
+
+	@Override
+	public ColourLAB lab(Illuminant illuminant) {
+		if (this.illuminant.equals(illuminant)) {
+			return this;
+		}
+		return xyz(illuminant).lab(illuminant);
 	}
 
 	@Override

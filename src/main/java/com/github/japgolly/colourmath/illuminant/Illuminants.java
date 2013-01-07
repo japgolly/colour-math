@@ -11,6 +11,22 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Illuminants {
 
+	private static final ThreadLocal<Illuminant> DEFAULTS = new ThreadLocal<Illuminant>() {
+		@Override
+		protected Illuminant initialValue() {
+			return CIE1964.D65;
+		};
+	};
+
+	public static Illuminant getDefault() {
+		return DEFAULTS.get();
+	}
+
+	public static Illuminant setDefault(Illuminant illuminant) {
+		DEFAULTS.set(illuminant);
+		return illuminant;
+	}
+
 	/**
 	 * CIE 1931 2° Standard Observer.
 	 */
@@ -148,5 +164,4 @@ public final class Illuminants {
 		Illuminant F12 = new IlluminantImpl(100, 0.44256, 0.39717, 111.428355615983, 40.3529974570083);
 	}
 
-	public static final Illuminant DEFAULT = CIE1964.D65;
 }

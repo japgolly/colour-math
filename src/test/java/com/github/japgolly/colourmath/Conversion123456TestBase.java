@@ -4,7 +4,10 @@ import static org.fest.assertions.api.Assertions.assertThat;
 import static org.fest.assertions.api.Assertions.offset;
 
 import org.fest.assertions.data.Offset;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.github.japgolly.colourmath.illuminant.Illuminants;
 
 /**
  * TODOC: com.github.japgolly.colourmath.ColourRGB255Test
@@ -12,6 +15,11 @@ import org.junit.Test;
  * @since 06/01/2013
  */
 public abstract class Conversion123456TestBase {
+
+	@BeforeClass
+	public static void useSRGB() {
+		Illuminants.setDefault(Illuminants.CIE1931.D65);
+	}
 
 	// HTTP = #123456
 	// Web safe = #003366
@@ -121,7 +129,7 @@ public abstract class Conversion123456TestBase {
 	}
 
 	protected void assertXYZ(float x, float y, float z) {
-		final Offset<Double> tolerance = offset(.0005);
+		final Offset<Double> tolerance = offset(.01);
 		final ColourXYZ c2 = c.xyz();
 		assertThat(c2.x).isEqualTo(x, tolerance);
 		assertThat(c2.y).isEqualTo(y, tolerance);
@@ -129,7 +137,7 @@ public abstract class Conversion123456TestBase {
 	}
 
 	protected void assertLAB(float l, float a, float b) {
-		final Offset<Double> tolerance = offset(.0005);
+		final Offset<Double> tolerance = offset(.01);
 		final ColourLAB c2 = c.lab();
 		assertThat(c2.l).isEqualTo(l, tolerance);
 		assertThat(c2.a).isEqualTo(a, tolerance);

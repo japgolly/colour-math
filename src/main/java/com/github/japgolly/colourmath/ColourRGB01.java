@@ -2,10 +2,12 @@ package com.github.japgolly.colourmath;
 
 import javax.annotation.concurrent.Immutable;
 
-
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Wither;
+
+import com.github.japgolly.colourmath.illuminant.Illuminant;
+import com.github.japgolly.colourmath.illuminant.Illuminants;
 
 /**
  * TODOC: com.github.japgolly.colourmath.ColourRGB
@@ -59,37 +61,29 @@ public class ColourRGB01 extends ColourAdapter {
 		return new ColourHSL01(h, s, l);
 	}
 
-	@Override
-	public ColourXYZ xyz() {
-		float r = this.r;
-		float g = this.g;
-		float b = this.b;
-		if (r > 0.04045f) {
-			r = (r + 0.055f) / 1.055f;
-			r = (float) Math.pow(r, 2.4f);
-		} else {
-			r = r / 12.92f;
-		}
-		if (g > 0.04045f) {
-			g = (g + 0.055f) / 1.055f;
-			g = (float) Math.pow(g, 2.4f);
-		} else {
-			g = g / 12.92f;
-		}
-		if (b > 0.04045f) {
-			b = (b + 0.055f) / 1.055f;
-			b = (float) Math.pow(b, 2.4f);
-		} else {
-			b = b / 12.92f;
-		}
-		r *= 100f;
-		g *= 100f;
-		b *= 100f;
+	private static final double[][] sRGB_TO_XYZ = { { 0.4124564, 0.3575761, 0.1804375 },
+			{ 0.2126729, 0.7151522, 0.0721750 }, { 0.0193339, 0.1191920, 0.9503041 } };
 
-		// TODO light hardcoded
-		float x = r * 0.4124f + g * 0.3576f + b * 0.1805f;
-		float y = r * 0.2126f + g * 0.7152f + b * 0.0722f;
-		float z = r * 0.0193f + g * 0.1192f + b * 0.9505f;
-		return new ColourXYZ(x, y, z);
+	@Override
+	public ColourXYZ xyz(Illuminant illuminant) {
+		double r = this.r;
+		double g = this.g;
+		double b = this.b;
+
+		r = (r > 0.04045) ? Math.pow((r + 0.055) / 1.055, 2.4) : r / 12.92;
+		g = (g > 0.04045) ? Math.pow((g + 0.055) / 1.055, 2.4) : g / 12.92;
+		b = (b > 0.04045) ? Math.pow((b + 0.055) / 1.055, 2.4) : b / 12.92;
+
+		r *= 100.0;
+		g *= 100.0;
+		b *= 100.0;
+
+		double x = MatrixMath.multiplyRow(sRGB_TO_XYZ[0], r, g, b);
+		double y = MatrixMath.multiplyRow(sRGB_TO_XYZ[1], r, g, b);
+		double z = MatrixMath.multiplyRow(sRGB_TO_XYZ[2], r, g, b);
+
+		final ColourXYZ c = new ColourXYZ(x, y, z, Illuminants.CIE1931.D65);
+
+		return c.illuminant.equals(illuminant) ? c : c.xyz(illuminant);
 	}
 }

@@ -2,6 +2,9 @@ package com.github.japgolly.colourmath;
 
 import javax.annotation.concurrent.ThreadSafe;
 
+import com.github.japgolly.colourmath.illuminant.Illuminant;
+import com.github.japgolly.colourmath.illuminant.Illuminants;
+
 /**
  * TODOC: com.github.japgolly.colourmath.ColourFactory
  * 
@@ -33,11 +36,19 @@ public class ColourFactory {
 	}
 
 	public ColourLAB LAB(double l, double a, double b) {
-		return new ColourLAB(l, a, b);
+		return new ColourLAB(l, a, b, Illuminants.getDefault());
 	}
 
 	public ColourLAB LAB(double[] lab) {
-		return new ColourLAB(lab[0], lab[1], lab[2]);
+		return new ColourLAB(lab[0], lab[1], lab[2], Illuminants.getDefault());
+	}
+
+	public ColourLAB LAB(double l, double a, double b, Illuminant illuminant) {
+		return new ColourLAB(l, a, b, illuminant);
+	}
+
+	public ColourLAB LAB(double[] lab, Illuminant illuminant) {
+		return new ColourLAB(lab[0], lab[1], lab[2], illuminant);
 	}
 
 	public ColourRGB01 RGB01(float r, float g, float b) {
@@ -69,10 +80,18 @@ public class ColourFactory {
 	}
 
 	public ColourXYZ XYZ(double x, double y, double z) {
-		return new ColourXYZ(x, y, z);
+		return new ColourXYZ(x, y, z, Illuminants.getDefault());
+	}
+
+	public ColourXYZ XYZ(double x, double y, double z, Illuminant illuminant) {
+		return new ColourXYZ(x, y, z, illuminant);
 	}
 
 	public ColourXYZ XYZ(double[] xyz) {
-		return new ColourXYZ(xyz[0], xyz[1], xyz[2]);
+		return new ColourXYZ(xyz[0], xyz[1], xyz[2], Illuminants.getDefault());
+	}
+
+	public ColourXYZ XYZ(double[] xyz, Illuminant illuminant) {
+		return new ColourXYZ(xyz[0], xyz[1], xyz[2], illuminant);
 	}
 }

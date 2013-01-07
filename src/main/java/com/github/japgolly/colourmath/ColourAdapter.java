@@ -1,5 +1,8 @@
 package com.github.japgolly.colourmath;
 
+import com.github.japgolly.colourmath.illuminant.Illuminant;
+import com.github.japgolly.colourmath.illuminant.Illuminants;
+
 /**
  * TODOC: com.github.japgolly.colourmath.ColourAdapter
  * 
@@ -42,13 +45,23 @@ abstract class ColourAdapter implements Colour {
 	}
 
 	@Override
-	public ColourXYZ xyz() {
-		return rgb01().xyz();
+	public final ColourXYZ xyz() {
+		return xyz(Illuminants.getDefault());
 	}
 
 	@Override
-	public ColourLAB lab() {
-		return xyz().lab();
+	public ColourXYZ xyz(Illuminant illuminant) {
+		return rgb01().xyz(illuminant);
+	}
+
+	@Override
+	public final ColourLAB lab() {
+		return lab(Illuminants.getDefault());
+	}
+
+	@Override
+	public ColourLAB lab(Illuminant illuminant) {
+		return xyz(illuminant).lab(illuminant);
 	}
 
 	@Override
