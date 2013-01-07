@@ -40,22 +40,22 @@ public final class Illuminants {
 		/** Equal energy */
 		Illuminant E = new IlluminantImpl(100, 0.333333333333333, 0.333333333333333, 100, 100);
 
-		/** Daylight Fluorescent */
+		/** Daylight Fluorescent (6430K) */
 		Illuminant F1 = new IlluminantImpl(100, 0.3131, 0.33727, 92.833634773327, 103.664719660806);
 
-		/** Cool White Fluorescent */
+		/** Cool White Fluorescent (4230K) */
 		Illuminant F2 = new IlluminantImpl(100, 0.37208, 0.37529, 99.1446614618029, 67.3159423379253);
 
-		/** White Fluorescent */
+		/** White Fluorescent (3450K) */
 		Illuminant F3 = new IlluminantImpl(100, 0.4091, 0.3943, 103.753487192493, 49.860512300279);
 
-		/** Warm White Fluorescent */
+		/** Warm White Fluorescent (2940K) */
 		Illuminant F4 = new IlluminantImpl(100, 0.44018, 0.40329, 109.14726375561, 38.8132609288601);
 
-		/** Daylight Fluorescent */
+		/** Daylight Fluorescent (6350K) */
 		Illuminant F5 = new IlluminantImpl(100, 0.31379, 0.34531, 90.8719701138108, 98.7228866815326);
 
-		/** Lite White Fluorescent */
+		/** Lite White Fluorescent (4150K) */
 		Illuminant F6 = new IlluminantImpl(100, 0.3779, 0.38835, 97.3091283635896, 60.1905497618128);
 
 		/** D65 simulator, Daylight simulator */
@@ -64,7 +64,7 @@ public final class Illuminants {
 		/** D50 simulator, Sylvania F40 Design 50 */
 		Illuminant F8 = new IlluminantImpl(100, 0.34588, 0.35875, 96.412543554007, 82.3331010452962);
 
-		/** Cool White Deluxe Fluorescent */
+		/** Cool White Deluxe Fluorescent (4150K) */
 		Illuminant F9 = new IlluminantImpl(100, 0.37417, 0.37281, 100.364797081623, 67.8683511708377);
 
 		/** Philips TL85, Ultralume 50 */
@@ -111,22 +111,22 @@ public final class Illuminants {
 		/** Equal energy */
 		Illuminant E = new IlluminantImpl(100, 0.333333333333333, 0.333333333333333, 100, 100);
 
-		/** Daylight Fluorescent */
+		/** Daylight Fluorescent (6430K) */
 		Illuminant F1 = new IlluminantImpl(100, 0.31811, 0.33559, 94.7912631484848, 103.191394260854);
 
-		/** Cool White Fluorescent */
+		/** Cool White Fluorescent (4230K) */
 		Illuminant F2 = new IlluminantImpl(100, 0.37925, 0.36733, 103.245038521221, 68.9897367489723);
 
-		/** White Fluorescent */
+		/** White Fluorescent (3450K) */
 		Illuminant F3 = new IlluminantImpl(100, 0.41761, 0.38324, 108.968270535435, 51.9648262185575);
 
-		/** Warm White Fluorescent */
+		/** Warm White Fluorescent (2940K) */
 		Illuminant F4 = new IlluminantImpl(100, 0.4492, 0.39074, 114.961355376977, 40.9633004043609);
 
-		/** Daylight Fluorescent */
+		/** Daylight Fluorescent (6350K) */
 		Illuminant F5 = new IlluminantImpl(100, 0.31975, 0.34246, 93.3685685919523, 98.6363370904631);
 
-		/** Lite White Fluorescent */
+		/** Lite White Fluorescent (4150K) */
 		Illuminant F6 = new IlluminantImpl(100, 0.3866, 0.37847, 102.148122704574, 62.0736121753375);
 
 		/** D65 simulator, Daylight simulator */
@@ -135,7 +135,7 @@ public final class Illuminants {
 		/** D50 simulator, Sylvania F40 Design 50 */
 		Illuminant F8 = new IlluminantImpl(100, 0.34902, 0.35939, 97.1145552185648, 81.1347004646762);
 
-		/** Cool White Deluxe Fluorescent */
+		/** Cool White Deluxe Fluorescent (4150K) */
 		Illuminant F9 = new IlluminantImpl(100, 0.37829, 0.37045, 102.116344985828, 67.8256174922391);
 
 		/** Philips TL85, Ultralume 50 */
