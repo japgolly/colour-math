@@ -2,7 +2,6 @@ package com.github.japgolly.colourmath;
 
 import javax.annotation.concurrent.ThreadSafe;
 
-
 /**
  * TODOC: com.github.japgolly.colourmath.ColourFactory
  * 
@@ -33,11 +32,11 @@ public class ColourFactory {
 		return new ColourHSL255(hsl[0], hsl[1], hsl[2]);
 	}
 
-	public ColourLAB LAB(float l, float a, float b) {
+	public ColourLAB LAB(double l, double a, double b) {
 		return new ColourLAB(l, a, b);
 	}
 
-	public ColourLAB LAB(float[] lab) {
+	public ColourLAB LAB(double[] lab) {
 		return new ColourLAB(lab[0], lab[1], lab[2]);
 	}
 
@@ -69,11 +68,11 @@ public class ColourFactory {
 		return new ColourRGB255((rgba & 0xFF000000) >>> 24, (rgba & 0xFF0000) >>> 16, (rgba & 0xFF00) >>> 8);
 	}
 
-	public ColourXYZ XYZ(float x, float y, float z) {
+	public ColourXYZ XYZ(double x, double y, double z) {
 		return new ColourXYZ(x, y, z);
 	}
 
-	public ColourXYZ XYZ(float[] xyz) {
+	public ColourXYZ XYZ(double[] xyz) {
 		return new ColourXYZ(xyz[0], xyz[1], xyz[2]);
 	}
 }
