@@ -67,15 +67,15 @@ public class ColourFactory {
 		return new ColourRGB255(rgb[0], rgb[1], rgb[2]);
 	}
 
-	public static ColourRGB255 RGB(int rgb) {
+	public ColourRGB255 RGB(int rgb) {
 		return new ColourRGB255((rgb & 0xFF0000) >>> 16, (rgb & 0xFF00) >>> 8, rgb & 0xFF);
 	}
 
-	public static ColourRGB255 ARGB(int argb) {
+	public ColourRGB255 ARGB(int argb) {
 		return RGB(argb);
 	}
 
-	public static ColourRGB255 RGBA(int rgba) {
+	public ColourRGB255 RGBA(int rgba) {
 		return new ColourRGB255((rgba & 0xFF000000) >>> 24, (rgba & 0xFF0000) >>> 16, (rgba & 0xFF00) >>> 8);
 	}
 
