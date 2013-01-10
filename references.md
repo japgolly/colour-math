@@ -47,4 +47,5 @@ Online Tools
 * [Chromatic Adaptation Calculator](http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html)
 * [LAB & HCL sliders](http://vis4.net/blog/posts/avoid-equidistant-hsv-colors/)
 * [HCL gamut demo](http://cscheid.github.com/facet/demos/hcl/hcl.html)
+* [CIECAM02 Calculator](http://www.hpl.hp.com/personal/Nathan_Moroney/ciecam02/ciecam02.html)
 
