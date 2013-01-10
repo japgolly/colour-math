@@ -37,4 +37,6 @@ public interface Colour {
 	ColourLAB lab(Illuminant illuminant);
 
 	double deltaE_94(Colour otherColour);
+
+	double deltaE_2000(Colour otherColour);
 }

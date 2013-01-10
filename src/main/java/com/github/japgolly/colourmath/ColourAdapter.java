@@ -68,4 +68,9 @@ abstract class ColourAdapter implements Colour, Consts {
 	public double deltaE_94(Colour otherColour) {
 		return lab().deltaE_94(otherColour);
 	}
+
+	@Override
+	public double deltaE_2000(Colour otherColour) {
+		return lab().deltaE_2000(otherColour);
+	}
 }
