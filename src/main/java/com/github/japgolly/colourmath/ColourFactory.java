@@ -69,56 +69,56 @@ public class ColourFactory {
 
 	// ------------------------------------------------------------------------------------
 
-	public ColourXYZ XYZ(double x, double y, double z) {
-		return new ColourXYZ(x, y, z, Illuminants.getDefault());
+	public ColourXYZ XYZ(double X, double Y, double Z) {
+		return new ColourXYZ(X, Y, Z, Illuminants.getDefault());
 	}
 
-	public ColourXYZ XYZ(double x, double y, double z, Illuminant illuminant) {
-		return new ColourXYZ(x, y, z, illuminant);
+	public ColourXYZ XYZ(double X, double Y, double Z, Illuminant illuminant) {
+		return new ColourXYZ(X, Y, Z, illuminant);
 	}
 
-	public ColourXYZ XYZ(double[] xyz) {
-		return new ColourXYZ(xyz[0], xyz[1], xyz[2], Illuminants.getDefault());
+	public ColourXYZ XYZ(double[] XYZ) {
+		return new ColourXYZ(XYZ[0], XYZ[1], XYZ[2], Illuminants.getDefault());
 	}
 
-	public ColourXYZ XYZ(double[] xyz, Illuminant illuminant) {
-		return new ColourXYZ(xyz[0], xyz[1], xyz[2], illuminant);
-	}
-
-	// ------------------------------------------------------------------------------------
-
-	public ColourLab Lab(double l, double a, double b) {
-		return new ColourLab(l, a, b, Illuminants.getDefault());
-	}
-
-	public ColourLab Lab(double l, double a, double b, Illuminant illuminant) {
-		return new ColourLab(l, a, b, illuminant);
-	}
-
-	public ColourLab Lab(double[] lab) {
-		return new ColourLab(lab[0], lab[1], lab[2], Illuminants.getDefault());
-	}
-
-	public ColourLab Lab(double[] lab, Illuminant illuminant) {
-		return new ColourLab(lab[0], lab[1], lab[2], illuminant);
+	public ColourXYZ XYZ(double[] XYZ, Illuminant illuminant) {
+		return new ColourXYZ(XYZ[0], XYZ[1], XYZ[2], illuminant);
 	}
 
 	// ------------------------------------------------------------------------------------
 
-	public ColourLuv Luv(double l, double u, double v) {
-		return new ColourLuv(l, u, v, Illuminants.getDefault());
+	public ColourLab Lab(double L, double a, double b) {
+		return new ColourLab(L, a, b, Illuminants.getDefault());
 	}
 
-	public ColourLuv Luv(double[] lab) {
-		return new ColourLuv(lab[0], lab[1], lab[2], Illuminants.getDefault());
+	public ColourLab Lab(double L, double a, double b, Illuminant illuminant) {
+		return new ColourLab(L, a, b, illuminant);
 	}
 
-	public ColourLuv Luv(double l, double u, double v, Illuminant illuminant) {
-		return new ColourLuv(l, u, v, illuminant);
+	public ColourLab Lab(double[] Lab) {
+		return new ColourLab(Lab[0], Lab[1], Lab[2], Illuminants.getDefault());
 	}
 
-	public ColourLuv Luv(double[] lab, Illuminant illuminant) {
-		return new ColourLuv(lab[0], lab[1], lab[2], illuminant);
+	public ColourLab Lab(double[] Lab, Illuminant illuminant) {
+		return new ColourLab(Lab[0], Lab[1], Lab[2], illuminant);
+	}
+
+	// ------------------------------------------------------------------------------------
+
+	public ColourLuv Luv(double L, double u, double v) {
+		return new ColourLuv(L, u, v, Illuminants.getDefault());
+	}
+
+	public ColourLuv Luv(double L, double u, double v, Illuminant illuminant) {
+		return new ColourLuv(L, u, v, illuminant);
+	}
+
+	public ColourLuv Luv(double[] Luv) {
+		return new ColourLuv(Luv[0], Luv[1], Luv[2], Illuminants.getDefault());
+	}
+
+	public ColourLuv Luv(double[] Luv, Illuminant illuminant) {
+		return new ColourLuv(Luv[0], Luv[1], Luv[2], illuminant);
 	}
 
 }

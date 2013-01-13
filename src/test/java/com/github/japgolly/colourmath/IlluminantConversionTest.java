@@ -99,15 +99,15 @@ public class IlluminantConversionTest {
 	protected void assertXYZ(ColourXYZ c, double x, double y, double z, Illuminant illuminant) {
 		final Offset<Double> tolerance = offset(.1);
 		assertThat(c.illuminant).isEqualTo(illuminant);
-		assertThat(c.x).isEqualTo(x, tolerance);
-		assertThat(c.y).isEqualTo(y, tolerance);
-		assertThat(c.z).isEqualTo(z, tolerance);
+		assertThat(c.X).isEqualTo(x, tolerance);
+		assertThat(c.Y).isEqualTo(y, tolerance);
+		assertThat(c.Z).isEqualTo(z, tolerance);
 	}
 
 	protected void assertLAB(ColourLab c, double x, double y, double z, Illuminant illuminant) {
 		final Offset<Double> tolerance = offset(.1);
 		assertThat(c.illuminant).isEqualTo(illuminant);
-		assertThat(c.l).isEqualTo(x, tolerance);
+		assertThat(c.L).isEqualTo(x, tolerance);
 		assertThat(c.a).isEqualTo(y, tolerance);
 		assertThat(c.b).isEqualTo(z, tolerance);
 	}

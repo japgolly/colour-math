@@ -25,13 +25,13 @@ import com.github.japgolly.colourmath.illuminant.Illuminant;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class ColourLab extends ColourAdapter {
-	@Wither public final double l, a, b;
+	@Wither public final double L, a, b;
 	public final Illuminant illuminant;
 
-	ColourLab(double l, double a, double b, Illuminant illuminant) {
-		Conditions.assert100(l);
+	ColourLab(double L, double a, double b, Illuminant illuminant) {
+		Conditions.assert100(L);
 		Conditions.assert128_127(a, b);
-		this.l = l;
+		this.L = L;
 		this.a = a;
 		this.b = b;
 		this.illuminant = illuminant;
@@ -44,23 +44,23 @@ public class ColourLab extends ColourAdapter {
 
 	@Override
 	public ColourXYZ XYZ(Illuminant illuminant) {
-		double y = (l + 16.0) / 116.0;
-		double x = a / 500.0 + y;
-		double z = y - b / 200.0;
+		double Y = (L + 16.0) / 116.0;
+		double X = a / 500.0 + Y;
+		double Z = Y - b / 200.0;
 
-		final double x3 = pow(x, 3);
-		final double y3 = pow(y, 3);
-		final double z3 = pow(z, 3);
+		final double x3 = pow(X, 3);
+		final double y3 = pow(Y, 3);
+		final double z3 = pow(Z, 3);
 
-		x = (x3 > _6_DIV_29_CUBED) ? x3 : (x - _16_DIV_116) / _29_DIV_6_SQR_DIV_3;
-		y = (y3 > _6_DIV_29_CUBED) ? y3 : (y - _16_DIV_116) / _29_DIV_6_SQR_DIV_3;
-		z = (z3 > _6_DIV_29_CUBED) ? z3 : (z - _16_DIV_116) / _29_DIV_6_SQR_DIV_3;
+		X = (x3 > _6_DIV_29_CUBED) ? x3 : (X - _16_DIV_116) / _29_DIV_6_SQR_DIV_3;
+		Y = (y3 > _6_DIV_29_CUBED) ? y3 : (Y - _16_DIV_116) / _29_DIV_6_SQR_DIV_3;
+		Z = (z3 > _6_DIV_29_CUBED) ? z3 : (Z - _16_DIV_116) / _29_DIV_6_SQR_DIV_3;
 
-		x *= this.illuminant.X();
-		y *= this.illuminant.Y();
-		z *= this.illuminant.Z();
+		X *= this.illuminant.X();
+		Y *= this.illuminant.Y();
+		Z *= this.illuminant.Z();
 
-		return new ColourXYZ(x, y, z, this.illuminant).XYZ(illuminant);
+		return new ColourXYZ(X, Y, Z, this.illuminant).XYZ(illuminant);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class ColourLab extends ColourAdapter {
 		final double c1 = sqrt(lab1.a * lab1.a + lab1.b * lab1.b);
 		final double c2 = sqrt(lab2.a * lab2.a + lab2.b * lab2.b);
 		final double dc = c1 - c2;
-		final double dl = lab1.l - lab2.l;
+		final double dl = lab1.L - lab2.L;
 		final double da = lab1.a - lab2.a;
 		final double db = lab1.b - lab2.b;
 		final double dh = sqrt((da * da) + (db * db) - (dc * dc));
@@ -108,7 +108,7 @@ public class ColourLab extends ColourAdapter {
 		final double h2 = (a2 == 0 && col2.b == 0) ? 0 : invtan(col2.b, a2);
 
 		// steps 8 - 11
-		final double dL = col2.l - col1.l;
+		final double dL = col2.L - col1.L;
 		final double dC = C2 - C1;
 		// final double dh = deltaH(C1, C2, h1, h2);
 		final double h2m1 = h2 - h1;
@@ -120,7 +120,7 @@ public class ColourLab extends ColourAdapter {
 		final double dH = 2 * sqrt(C1 * C2) * sin(toRadians(dh * 0.5));
 
 		// steps 12 - 22
-		final double Lb = (col1.l + col2.l) * 0.5; // 12
+		final double Lb = (col1.L + col2.L) * 0.5; // 12
 		final double Cb = (C1 + C2) * 0.5; // 13
 		final double h1m2 = h1 - h2; // 14
 		final double h1p2 = h1 + h2;

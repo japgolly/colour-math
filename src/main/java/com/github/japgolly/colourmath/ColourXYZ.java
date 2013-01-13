@@ -20,14 +20,14 @@ import com.github.japgolly.colourmath.illuminant.Illuminants.CIE1931;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class ColourXYZ extends ColourAdapter {
-	@Wither public final double x, y, z;
+	@Wither public final double X, Y, Z;
 	public final Illuminant illuminant;
 
-	ColourXYZ(double x, double y, double z, Illuminant illuminant) {
+	ColourXYZ(double X, double Y, double Z, Illuminant illuminant) {
 		// TODO XYZ range?
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		this.X = X;
+		this.Y = Y;
+		this.Z = Z;
 		this.illuminant = illuminant;
 	}
 
@@ -50,7 +50,7 @@ public class ColourXYZ extends ColourAdapter {
 		final double[][] m = MathFunc.multiply(MathFunc.multiply(BRADFORD_M, centre), BRADFORD_MI);
 
 		// Transform
-		double xyz[] = MathFunc.multiply(new double[][] { { x, y, z } }, m)[0];
+		double xyz[] = MathFunc.multiply(new double[][] { { X, Y, Z } }, m)[0];
 		return new ColourXYZ(xyz[0], xyz[1], xyz[2], illuminant);
 	}
 
@@ -60,9 +60,9 @@ public class ColourXYZ extends ColourAdapter {
 			return XYZ(CIE1931.D65).RGB01();
 		}
 
-		double x = this.x / 100.0;
-		double y = this.y / 100.0;
-		double z = this.z / 100.0;
+		double x = this.X / 100.0;
+		double y = this.Y / 100.0;
+		double z = this.Z / 100.0;
 
 		double r = MathFunc.multiplyRow(XYZ_TO_sRGB[0], x, y, z);
 		double g = MathFunc.multiplyRow(XYZ_TO_sRGB[1], x, y, z);
@@ -85,19 +85,19 @@ public class ColourXYZ extends ColourAdapter {
 			return XYZ(illuminant).Lab(illuminant);
 		}
 
-		double _x = x / illuminant.X();
-		double _y = y / illuminant.Y();
-		double _z = z / illuminant.Z();
+		double _x = X / illuminant.X();
+		double _y = Y / illuminant.Y();
+		double _z = Z / illuminant.Z();
 
 		_x = (_x > _6_DIV_29_CUBED) ? pow(_x, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _x + _16_DIV_116;
 		_y = (_y > _6_DIV_29_CUBED) ? pow(_y, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _y + _16_DIV_116;
 		_z = (_z > _6_DIV_29_CUBED) ? pow(_z, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _z + _16_DIV_116;
 
-		double l = 116.0 * _y - 16.0;
+		double L = 116.0 * _y - 16.0;
 		double a = 500.0 * (_x - _y);
 		double b = 200.0 * (_y - _z);
 
-		return new ColourLab(l, a, b, illuminant);
+		return new ColourLab(L, a, b, illuminant);
 	}
 
 	@Override
@@ -106,13 +106,13 @@ public class ColourXYZ extends ColourAdapter {
 			return XYZ(illuminant).Luv(illuminant);
 		}
 
-		final double y_div_yn = y / illuminant.Y();
+		final double y_div_yn = Y / illuminant.Y();
 		final double L =
 				(y_div_yn <= _6_DIV_29_CUBED) ? _29_DIV_3_CUBED * y_div_yn : 116. * pow(y_div_yn, 1. / 3.) - 16;
 
-		final double uv_denom = x + 15. * y + 3. * z;
-		final double u_ = 4. * x / uv_denom;
-		final double v_ = 9. * y / uv_denom;
+		final double uv_denom = X + 15. * Y + 3. * Z;
+		final double u_ = 4. * X / uv_denom;
+		final double v_ = 9. * Y / uv_denom;
 
 		final double L13 = L * 13.;
 		final double u = L13 * (u_ - illuminant.u_());

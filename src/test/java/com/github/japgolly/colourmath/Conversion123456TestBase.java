@@ -136,15 +136,15 @@ public abstract class Conversion123456TestBase {
 	protected void assertXYZ(float x, float y, float z) {
 		final Offset<Double> tolerance = offset(.01);
 		final ColourXYZ c2 = c.XYZ();
-		assertThat(c2.x).isEqualTo(x, tolerance);
-		assertThat(c2.y).isEqualTo(y, tolerance);
-		assertThat(c2.z).isEqualTo(z, tolerance);
+		assertThat(c2.X).isEqualTo(x, tolerance);
+		assertThat(c2.Y).isEqualTo(y, tolerance);
+		assertThat(c2.Z).isEqualTo(z, tolerance);
 	}
 
 	protected void assertLAB(float l, float a, float b) {
 		final Offset<Double> tolerance = offset(.01);
 		final ColourLab c2 = c.Lab();
-		assertThat(c2.l).isEqualTo(l, tolerance);
+		assertThat(c2.L).isEqualTo(l, tolerance);
 		assertThat(c2.a).isEqualTo(a, tolerance);
 		assertThat(c2.b).isEqualTo(b, tolerance);
 	}
@@ -152,7 +152,7 @@ public abstract class Conversion123456TestBase {
 	protected void assertLuv(float l, float u, float v) {
 		final Offset<Double> tolerance = offset(.01);
 		final ColourLuv c2 = c.Luv();
-		assertThat(c2.l).isEqualTo(l, tolerance);
+		assertThat(c2.L).isEqualTo(l, tolerance);
 		assertThat(c2.u).isEqualTo(u, tolerance);
 		assertThat(c2.v).isEqualTo(v, tolerance);
 	}
