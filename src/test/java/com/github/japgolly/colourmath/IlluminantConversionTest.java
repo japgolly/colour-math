@@ -69,21 +69,21 @@ public class IlluminantConversionTest {
 	public void testLABToXYZ() throws Exception {
 
 		// D65 2deg -> D65 2deg
-		assertXYZ(CF.LAB(51.8372, 82.2926, -47.0078, CIE1931.D65).XYZ(CIE1931.D65), 40, 20, 60, CIE1931.D65);
+		assertXYZ(CF.Lab(51.8372, 82.2926, -47.0078, CIE1931.D65).XYZ(CIE1931.D65), 40, 20, 60, CIE1931.D65);
 
 		// F2 2deg -> F2 2deg
-		assertXYZ(CF.LAB(52.0176, 74.9936, -45.7825, CIE1931.F2).XYZ(CIE1931.D65), 40, 20, 60, CIE1931.D65);
+		assertXYZ(CF.Lab(52.0176, 74.9936, -45.7825, CIE1931.F2).XYZ(CIE1931.D65), 40, 20, 60, CIE1931.D65);
 	}
 
 	@Test
 	public void testLABToLAB() throws Exception {
 
 		// D65 2deg -> D65 2deg
-		assertLAB(CF.LAB(51.8372, 82.2926, -47.0078, CIE1931.D65).Lab(CIE1931.D65), 51.8372, 82.2926, -47.0078,
+		assertLAB(CF.Lab(51.8372, 82.2926, -47.0078, CIE1931.D65).Lab(CIE1931.D65), 51.8372, 82.2926, -47.0078,
 				CIE1931.D65);
 
 		// D65 2deg -> F2 2deg
-		assertLAB(CF.LAB(51.8372, 82.2926, -47.0078, CIE1931.D65).Lab(CIE1931.F2), 52.0176, 74.9936, -45.7825,
+		assertLAB(CF.Lab(51.8372, 82.2926, -47.0078, CIE1931.D65).Lab(CIE1931.F2), 52.0176, 74.9936, -45.7825,
 				CIE1931.F2);
 	}
 
