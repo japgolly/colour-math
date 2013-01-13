@@ -1,5 +1,6 @@
 package com.github.japgolly.colourmath;
 
+import static java.lang.Math.atan2;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -9,7 +10,7 @@ import lombok.AllArgsConstructor;
  * @since 07/01/2013
  */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-final class MatrixMath {
+final class MathFunc implements Consts {
 
 	public static double multiplyRow(double[] mRow, double a, double b, double c) {
 		return a * mRow[0] + b * mRow[1] + c * mRow[2];
@@ -45,4 +46,21 @@ final class MatrixMath {
 
 		return results;
 	}
+
+	public static double invtan(double y, double x) {
+		double rads = atan2(y, x);
+		if (rads < 0) {
+			rads += TAU;
+		}
+		return toDegrees(rads);
+	}
+
+	public static double toDegrees(double rad) {
+		return rad * DIV_180_PI;
+	}
+
+	public static double toRadians(double deg) {
+		return deg / DIV_180_PI;
+	}
+
 }

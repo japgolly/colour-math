@@ -1,7 +1,8 @@
 package com.github.japgolly.colourmath;
 
+import static com.github.japgolly.colourmath.MathFunc.invtan;
+import static com.github.japgolly.colourmath.MathFunc.toRadians;
 import static java.lang.Math.abs;
-import static java.lang.Math.atan2;
 import static java.lang.Math.cos;
 import static java.lang.Math.pow;
 import static java.lang.Math.sin;
@@ -150,21 +151,4 @@ public class ColourLab extends ColourAdapter {
 
 		return dE;
 	}
-
-	private static double invtan(double y, double x) {
-		double rads = atan2(y, x);
-		if (rads < 0) {
-			rads += TAU;
-		}
-		return toDegrees(rads);
-	}
-
-	private static double toDegrees(double rad) {
-		return rad * DIV_180_PI;
-	}
-
-	private static double toRadians(double rad) {
-		return rad / DIV_180_PI;
-	}
-
 }

@@ -37,19 +37,19 @@ public class ColourXYZ extends ColourAdapter {
 
 		// Create cone response domains (source + dest)
 		final double[] crdS =
-				MatrixMath.multiply(
+				MathFunc.multiply(
 						new double[][] { { this.illuminant.X(), this.illuminant.Y(), this.illuminant.Z() } },
 						BRADFORD_M)[0];
 		final double[] crdD =
-				MatrixMath.multiply(new double[][] { { illuminant.X(), illuminant.Y(), illuminant.Z() } }, BRADFORD_M)[0];
+				MathFunc.multiply(new double[][] { { illuminant.X(), illuminant.Y(), illuminant.Z() } }, BRADFORD_M)[0];
 
 		// Generate XYZ transformation matrix
 		final double[][] centre =
 				new double[][] { { crdD[0] / crdS[0], 0, 0 }, { 0, crdD[1] / crdS[1], 0 }, { 0, 0, crdD[2] / crdS[2] } };
-		final double[][] m = MatrixMath.multiply(MatrixMath.multiply(BRADFORD_M, centre), BRADFORD_MI);
+		final double[][] m = MathFunc.multiply(MathFunc.multiply(BRADFORD_M, centre), BRADFORD_MI);
 
 		// Transform
-		double xyz[] = MatrixMath.multiply(new double[][] { { x, y, z } }, m)[0];
+		double xyz[] = MathFunc.multiply(new double[][] { { x, y, z } }, m)[0];
 		return new ColourXYZ(xyz[0], xyz[1], xyz[2], illuminant);
 	}
 
@@ -63,9 +63,9 @@ public class ColourXYZ extends ColourAdapter {
 		double y = this.y / 100.0;
 		double z = this.z / 100.0;
 
-		double r = MatrixMath.multiplyRow(XYZ_TO_sRGB[0], x, y, z);
-		double g = MatrixMath.multiplyRow(XYZ_TO_sRGB[1], x, y, z);
-		double b = MatrixMath.multiplyRow(XYZ_TO_sRGB[2], x, y, z);
+		double r = MathFunc.multiplyRow(XYZ_TO_sRGB[0], x, y, z);
+		double g = MathFunc.multiplyRow(XYZ_TO_sRGB[1], x, y, z);
+		double b = MathFunc.multiplyRow(XYZ_TO_sRGB[2], x, y, z);
 
 		r = (r > 0.0031308) ? 1.055 * Math.pow(r, 1.0 / 2.4) - 0.055 : 12.92 * r;
 		g = (g > 0.0031308) ? 1.055 * Math.pow(g, 1.0 / 2.4) - 0.055 : 12.92 * g;

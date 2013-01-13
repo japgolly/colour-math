@@ -75,9 +75,9 @@ public class ColourRGB01 extends ColourAdapter {
 		g *= 100.0;
 		b *= 100.0;
 
-		double x = MatrixMath.multiplyRow(sRGB_TO_XYZ[0], r, g, b);
-		double y = MatrixMath.multiplyRow(sRGB_TO_XYZ[1], r, g, b);
-		double z = MatrixMath.multiplyRow(sRGB_TO_XYZ[2], r, g, b);
+		double x = MathFunc.multiplyRow(sRGB_TO_XYZ[0], r, g, b);
+		double y = MathFunc.multiplyRow(sRGB_TO_XYZ[1], r, g, b);
+		double z = MathFunc.multiplyRow(sRGB_TO_XYZ[2], r, g, b);
 
 		final ColourXYZ c = new ColourXYZ(x, y, z, CIE1931.D65);
 
