@@ -9,7 +9,6 @@ import lombok.ToString;
 import lombok.experimental.Wither;
 
 import com.github.japgolly.colourmath.illuminant.Illuminant;
-import com.github.japgolly.colourmath.illuminant.Illuminants.CIE1931;
 
 /**
  * TODOC: com.github.japgolly.colourmath.ColourXyz
@@ -20,6 +19,7 @@ import com.github.japgolly.colourmath.illuminant.Illuminants.CIE1931;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class ColourXYZ extends ColourAdapter {
+
 	@Wither public final double X, Y, Z;
 	public final Illuminant illuminant;
 
@@ -56,8 +56,8 @@ public class ColourXYZ extends ColourAdapter {
 
 	@Override
 	public ColourRGB01 RGB01() {
-		if (!illuminant.equals(CIE1931.D65)) {
-			return XYZ(CIE1931.D65).RGB01();
+		if (!illuminant.equals(sRGB_ILLUMINANT)) {
+			return XYZ(sRGB_ILLUMINANT).RGB01();
 		}
 
 		double x = this.X / 100.0;

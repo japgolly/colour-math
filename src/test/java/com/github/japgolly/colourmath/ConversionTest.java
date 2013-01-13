@@ -36,6 +36,7 @@ public class ConversionTest {
 	@Parameterized.Parameters
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Collection<?> testData() {
+		Illuminants.setDefault(Illuminants.CIE1931.D65_LESS_PRECISE);
 		List names = new ArrayList();
 		for (String name : TestData.TEST_DATA.keySet()) {
 			names.add(new Object[] { name });
@@ -49,7 +50,7 @@ public class ConversionTest {
 
 	@Before
 	public void setup() {
-		Illuminants.setDefault(Illuminants.CIE1931.D65);
+		Illuminants.setDefault(Illuminants.CIE1931.D65_LESS_PRECISE);
 		testData = TestData.TEST_DATA.get(dataName);
 	}
 

@@ -22,7 +22,7 @@ public class TestData {
 	public final static Map<String, ColourVerification> TEST_DATA = new LinkedHashMap<String, ColourVerification>();
 
 	static {
-		Illuminants.setDefault(Illuminants.CIE1931.D65);
+		Illuminants.setDefault(Illuminants.CIE1931.D65_LESS_PRECISE);
 		TEST_DATA.put("0x123456", _123456());
 		TEST_DATA.put("0xDC1030", DC1030());
 		TEST_DATA.put("Black", black());

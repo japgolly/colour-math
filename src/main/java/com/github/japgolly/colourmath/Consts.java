@@ -2,12 +2,17 @@ package com.github.japgolly.colourmath;
 
 import static java.lang.Math.pow;
 
+import com.github.japgolly.colourmath.illuminant.Illuminant;
+import com.github.japgolly.colourmath.illuminant.Illuminants.CIE1931;
+
 /**
  * TODOC: com.github.japgolly.colourmath.Consts
  * 
  * @since 07/01/2013
  */
 interface Consts {
+
+	Illuminant sRGB_ILLUMINANT = CIE1931.D65_LESS_PRECISE;
 
 	double[][] sRGB_TO_XYZ = { { 0.4124564, 0.3575761, 0.1804375 }, { 0.2126729, 0.7151522, 0.0721750 },
 			{ 0.0193339, 0.1191920, 0.9503041 } };
