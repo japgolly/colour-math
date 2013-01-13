@@ -63,4 +63,8 @@ final class MathFunc implements Consts {
 		return deg / _180_DIV_PI;
 	}
 
+	public static int scaleTo255(double v) {
+		int i = (int) (v * 255.0 + 0.5);
+		return (i > 255) ? 255 : i;
+	}
 }

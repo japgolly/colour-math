@@ -36,7 +36,7 @@ public class IlluminantConversionTest {
 		assertRGB255(CF.XYZ(18.740, 19.916, 57.500, CIE1931.D65).RGB255(), 32, 128, 200);
 
 		// sRGB -> F2 2deg
-		assertRGB255(CF.XYZ(16.6180, 18.8858, 35.2862, CIE1931.F2).RGB255(), 32, 127, 200);
+		assertRGB255(CF.XYZ(16.6180, 18.8858, 35.2862, CIE1931.F2).RGB255(), 32, 128, 200);
 	}
 
 	@Test

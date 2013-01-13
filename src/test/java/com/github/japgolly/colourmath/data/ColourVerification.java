@@ -44,7 +44,7 @@ public class ColourVerification implements Colour {
 
 	void setHSL01(double h, double s, double l) {
 		this.HSL01 = CF.HSL01(h, s, l);
-		this.HSL255 = CF.HSL255((int) (h * 255), (int) (s * 255), (int) (l * 255));
+		this.HSL255 = CF.HSL255((int) (h * 255 + 0.5), (int) (s * 255 + 0.5), (int) (l * 255 + 0.5));
 	}
 
 	@Override
