@@ -1,7 +1,5 @@
 package com.github.japgolly.colourmath;
 
-import static com.github.japgolly.colourmath.MathFunc.scaleTo255;
-
 import javax.annotation.concurrent.Immutable;
 
 import lombok.EqualsAndHashCode;
@@ -33,7 +31,7 @@ public class ColourHSL01 extends ColourAdapter {
 
 	@Override
 	public ColourHSL255 HSL255() {
-		return new ColourHSL255(scaleTo255(h), scaleTo255(s), scaleTo255(l));
+		return new ColourHSL255(this);
 	}
 
 	@Override

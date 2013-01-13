@@ -1,7 +1,5 @@
 package com.github.japgolly.colourmath;
 
-import static com.github.japgolly.colourmath.MathFunc.scaleTo255;
-
 import javax.annotation.concurrent.Immutable;
 
 import lombok.EqualsAndHashCode;
@@ -9,7 +7,6 @@ import lombok.ToString;
 import lombok.experimental.Wither;
 
 import com.github.japgolly.colourmath.illuminant.Illuminant;
-import com.github.japgolly.colourmath.illuminant.Illuminants.CIE1931;
 
 /**
  * TODOC: com.github.japgolly.colourmath.ColourRGB
@@ -36,7 +33,7 @@ public class ColourRGB01 extends ColourAdapter {
 
 	@Override
 	public ColourRGB255 RGB255() {
-		return new ColourRGB255(scaleTo255(r), scaleTo255(g), scaleTo255(b));
+		return new ColourRGB255(this);
 	}
 
 	@Override
@@ -81,7 +78,7 @@ public class ColourRGB01 extends ColourAdapter {
 		double y = MathFunc.multiplyRow(sRGB_TO_XYZ[1], r, g, b);
 		double z = MathFunc.multiplyRow(sRGB_TO_XYZ[2], r, g, b);
 
-		final ColourXYZ c = new ColourXYZ(x, y, z, CIE1931.D65);
+		final ColourXYZ c = new ColourXYZ(x, y, z, sRGB_ILLUMINANT);
 
 		return c.illuminant.equals(illuminant) ? c : c.XYZ(illuminant);
 	}
