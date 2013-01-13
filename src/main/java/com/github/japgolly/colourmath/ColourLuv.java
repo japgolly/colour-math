@@ -48,7 +48,7 @@ public class ColourLuv extends ColourAdapter {
 			v_ = v / L13 + illuminant.v_();
 		}
 
-		final double Y = (L <= 8.) ? illuminant.Y() * L * _3_DIV_29_CUBED : illuminant.Y() * pow((L + 16.) / 116., 3.);
+		final double Y = (L <= 8.) ? illuminant.Y() * L * $3_DIV_29_CUBED : illuminant.Y() * pow((L + 16.) / 116., 3.);
 		final double X, Z;
 		if (v_ == 0) {
 			X = Z = 0;

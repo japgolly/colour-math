@@ -89,9 +89,9 @@ public class ColourXYZ extends ColourAdapter {
 		double _y = Y / illuminant.Y();
 		double _z = Z / illuminant.Z();
 
-		_x = (_x > _6_DIV_29_CUBED) ? pow(_x, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _x + _16_DIV_116;
-		_y = (_y > _6_DIV_29_CUBED) ? pow(_y, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _y + _16_DIV_116;
-		_z = (_z > _6_DIV_29_CUBED) ? pow(_z, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _z + _16_DIV_116;
+		_x = (_x > $6_DIV_29_CUBED) ? pow(_x, 1.0 / 3.0) : $29_DIV_6_SQR_DIV_3 * _x + $16_DIV_116;
+		_y = (_y > $6_DIV_29_CUBED) ? pow(_y, 1.0 / 3.0) : $29_DIV_6_SQR_DIV_3 * _y + $16_DIV_116;
+		_z = (_z > $6_DIV_29_CUBED) ? pow(_z, 1.0 / 3.0) : $29_DIV_6_SQR_DIV_3 * _z + $16_DIV_116;
 
 		double L = 116.0 * _y - 16.0;
 		double a = 500.0 * (_x - _y);
@@ -108,7 +108,7 @@ public class ColourXYZ extends ColourAdapter {
 
 		final double y_div_yn = Y / illuminant.Y();
 		final double L =
-				(y_div_yn <= _6_DIV_29_CUBED) ? _29_DIV_3_CUBED * y_div_yn : 116. * pow(y_div_yn, 1. / 3.) - 16;
+				(y_div_yn <= $6_DIV_29_CUBED) ? $29_DIV_3_CUBED * y_div_yn : 116. * pow(y_div_yn, 1. / 3.) - 16;
 
 		final double uv_denom = X + 15. * Y + 3. * Z;
 		final double u_, v_;

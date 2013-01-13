@@ -29,17 +29,17 @@ interface Consts {
 
 	double TAU = 2. * PI;
 
-	double _3_DIV_29_CUBED = pow(3. / 29, 3.);
+	double $3_DIV_29_CUBED = pow(3. / 29., 3.);
 
-	double _6_DIV_29_CUBED = pow(6. / 29., 3.); // 0.008856451679035631
+	double $6_DIV_29_CUBED = pow(6. / 29., 3.); // 0.008856451679035631
 
-	double _16_DIV_116 = 16. / 116.;
+	double $16_DIV_116 = 16. / 116.;
 
-	double _25_POW_7 = pow(25, 7);
+	double $25_POW_7 = pow(25., 7.);
 
-	double _29_DIV_3_CUBED = pow(29. / 3., 3.);
+	double $29_DIV_3_CUBED = pow(29. / 3., 3.);
 
-	double _29_DIV_6_SQR_DIV_3 = pow(29. / 6., 2.) / 3.; // 7.787037037037035
+	double $29_DIV_6_SQR_DIV_3 = pow(29. / 6., 2.) / 3.; // 7.787037037037035
 
-	double _180_DIV_PI = 180. / PI;
+	double $180_DIV_PI = 180. / PI;
 }
