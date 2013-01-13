@@ -31,7 +31,7 @@ public class ColourHSL255 extends ColourAdapter {
 
 	@Override
 	public ColourHSL01 HSL01() {
-		return new ColourHSL01(h / 255f, s / 255f, l / 255f);
+		return new ColourHSL01(h / 255., s / 255., l / 255.);
 	}
 
 	@Override

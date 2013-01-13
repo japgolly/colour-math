@@ -33,11 +33,11 @@ public class ColourFactory {
 		return new ColourRGB255((rgba & 0xFF000000) >>> 24, (rgba & 0xFF0000) >>> 16, (rgba & 0xFF00) >>> 8);
 	}
 
-	public ColourRGB01 RGB01(float r, float g, float b) {
+	public ColourRGB01 RGB01(double r, double g, double b) {
 		return new ColourRGB01(r, g, b);
 	}
 
-	public ColourRGB01 RGB01(float[] rgb) {
+	public ColourRGB01 RGB01(double[] rgb) {
 		return new ColourRGB01(rgb[0], rgb[1], rgb[2]);
 	}
 
@@ -51,11 +51,11 @@ public class ColourFactory {
 
 	// ------------------------------------------------------------------------------------
 
-	public ColourHSL01 HSL01(float h, float s, float l) {
+	public ColourHSL01 HSL01(double h, double s, double l) {
 		return new ColourHSL01(h, s, l);
 	}
 
-	public ColourHSL01 HSL01(float[] hsl) {
+	public ColourHSL01 HSL01(double[] hsl) {
 		return new ColourHSL01(hsl[0], hsl[1], hsl[2]);
 	}
 

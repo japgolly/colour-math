@@ -68,7 +68,7 @@ public abstract class Conversion123456TestBase {
 
 	@Test
 	public void testRGB01() {
-		assertRGB01(0.07059f, 0.20392f, 0.33725f);
+		assertRGB01(0.07059, 0.20392, 0.33725);
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public abstract class Conversion123456TestBase {
 
 	@Test
 	public void testHSL01() {
-		assertHSL01(210 / 360f, .654f, .204f);
+		assertHSL01(210 / 360., .654, .204);
 	}
 
 	@Test
@@ -103,8 +103,8 @@ public abstract class Conversion123456TestBase {
 
 	// -----------------------------------------------------------------------------------------------------------------
 
-	protected void assertRGB01(float r, float g, float b) {
-		final Offset<Float> tolerance = offset(.00001f);
+	protected void assertRGB01(double r, double g, double b) {
+		final Offset<Double> tolerance = offset(0.00001);
 		final ColourRGB01 c2 = c.RGB01();
 		assertThat(c2.r).isEqualTo(r, tolerance);
 		assertThat(c2.g).isEqualTo(g, tolerance);
@@ -118,8 +118,8 @@ public abstract class Conversion123456TestBase {
 		assertThat(c2.b).isEqualTo(b);
 	}
 
-	protected void assertHSL01(float h, float s, float l) {
-		final Offset<Float> tolerance = offset(.0005f);
+	protected void assertHSL01(double h, double s, double l) {
+		final Offset<Double> tolerance = offset(0.0005);
 		final ColourHSL01 c2 = c.HSL01();
 		assertThat(c2.h).isEqualTo(h, tolerance);
 		assertThat(c2.s).isEqualTo(s, tolerance);

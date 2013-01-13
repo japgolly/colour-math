@@ -18,9 +18,9 @@ import com.github.japgolly.colourmath.illuminant.Illuminants.CIE1931;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class ColourRGB01 extends ColourAdapter {
-	@Wither public final float r, g, b;
+	@Wither public final double r, g, b;
 
-	ColourRGB01(float r, float g, float b) {
+	ColourRGB01(double r, double g, double b) {
 		Conditions.assert01(r, g, b);
 		this.r = r;
 		this.g = g;
@@ -34,28 +34,28 @@ public class ColourRGB01 extends ColourAdapter {
 
 	@Override
 	public ColourRGB255 RGB255() {
-		return new ColourRGB255((int) (r * 255f), (int) (g * 255f), (int) (b * 255f));
+		return new ColourRGB255((int) (r * 255.), (int) (g * 255.), (int) (b * 255.));
 	}
 
 	@Override
 	public ColourHSL01 HSL01() {
-		float max = Math.max(r, Math.max(g, b));
-		float min = Math.min(r, Math.min(g, b));
-		float h, s, l = (max + min) * 0.5f;
+		double max = Math.max(r, Math.max(g, b));
+		double min = Math.min(r, Math.min(g, b));
+		double h, s, l = (max + min) * 0.5;
 
 		if (max == min) {
-			h = s = 0f; // achromatic
+			h = s = 0; // achromatic
 		} else {
-			float d = max - min;
-			s = l > 0.5f ? d / (2f - max - min) : d / (max + min);
+			double d = max - min;
+			s = l > 0.5 ? d / (2. - max - min) : d / (max + min);
 			if (r == max) {
-				h = (g - b) / d + (g < b ? 6f : 0f);
+				h = (g - b) / d + (g < b ? 6. : 0.);
 			} else if (g == max) {
-				h = (b - r) / d + 2f;
+				h = (b - r) / d + 2.;
 			} else {
-				h = (r - g) / d + 4f;
+				h = (r - g) / d + 4.;
 			}
-			h /= 6f;
+			h /= 6.;
 		}
 
 		return new ColourHSL01(h, s, l);

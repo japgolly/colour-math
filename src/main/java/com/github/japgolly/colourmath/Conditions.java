@@ -29,13 +29,13 @@ final class Conditions {
 		}
 	}
 
-	public static void assert01(float v) {
+	public static void assert01(double v) {
 		if (v < 0f || v > 1f) {
 			throw err("Illegal value: %f. Valid range is [0,1].", v);
 		}
 	}
 
-	public static void assert01(float a, float b, float c) {
+	public static void assert01(double a, double b, double c) {
 		if (a < 0f || a > 1f || b < 0f || b > 1f || c < 0f || c > 1f) {
 			throw err("Illegal value(s) in %f,%f,%f. Valid range is [0,1].", a, b, c);
 		}

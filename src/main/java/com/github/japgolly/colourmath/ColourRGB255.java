@@ -58,6 +58,6 @@ public class ColourRGB255 extends ColourAdapter {
 
 	@Override
 	public ColourRGB01 RGB01() {
-		return new ColourRGB01(r / 255f, g / 255f, b / 255f);
+		return new ColourRGB01(r / 255., g / 255., b / 255.);
 	}
 }
