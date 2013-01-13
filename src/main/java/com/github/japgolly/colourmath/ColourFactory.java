@@ -35,19 +35,19 @@ public class ColourFactory {
 		return new ColourHSL255(hsl[0], hsl[1], hsl[2]);
 	}
 
-	public ColourLab LAB(double l, double a, double b) {
+	public ColourLab Lab(double l, double a, double b) {
 		return new ColourLab(l, a, b, Illuminants.getDefault());
 	}
 
-	public ColourLab LAB(double[] lab) {
+	public ColourLab Lab(double[] lab) {
 		return new ColourLab(lab[0], lab[1], lab[2], Illuminants.getDefault());
 	}
 
-	public ColourLab LAB(double l, double a, double b, Illuminant illuminant) {
+	public ColourLab Lab(double l, double a, double b, Illuminant illuminant) {
 		return new ColourLab(l, a, b, illuminant);
 	}
 
-	public ColourLab LAB(double[] lab, Illuminant illuminant) {
+	public ColourLab Lab(double[] lab, Illuminant illuminant) {
 		return new ColourLab(lab[0], lab[1], lab[2], illuminant);
 	}
 
