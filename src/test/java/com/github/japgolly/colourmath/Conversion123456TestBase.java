@@ -88,17 +88,17 @@ public abstract class Conversion123456TestBase {
 
 	@Test
 	public void testXYZ() {
-		assertXYZ(3.157f, 3.256f, 9.266f);
+		assertXYZ(3.157, 3.256, 9.266);
 	}
 
 	@Test
 	public void testLAB() {
-		assertLAB(21.043f, 1.059f, -24.105f);
+		assertLAB(21.043, 1.059, -24.105);
 	}
 
 	@Test
 	public void testLuv() {
-		assertLuv(21.043f, -10.831f, -27.651f);
+		assertLuv(21.043, -10.831, -27.651);
 	}
 
 	// -----------------------------------------------------------------------------------------------------------------
@@ -133,7 +133,7 @@ public abstract class Conversion123456TestBase {
 		assertThat(c2.l).isEqualTo(l);
 	}
 
-	protected void assertXYZ(float x, float y, float z) {
+	protected void assertXYZ(double x, double y, double z) {
 		final Offset<Double> tolerance = offset(.01);
 		final ColourXYZ c2 = c.XYZ();
 		assertThat(c2.X).isEqualTo(x, tolerance);
@@ -141,7 +141,7 @@ public abstract class Conversion123456TestBase {
 		assertThat(c2.Z).isEqualTo(z, tolerance);
 	}
 
-	protected void assertLAB(float l, float a, float b) {
+	protected void assertLAB(double l, double a, double b) {
 		final Offset<Double> tolerance = offset(.01);
 		final ColourLab c2 = c.Lab();
 		assertThat(c2.L).isEqualTo(l, tolerance);
@@ -149,7 +149,7 @@ public abstract class Conversion123456TestBase {
 		assertThat(c2.b).isEqualTo(b, tolerance);
 	}
 
-	protected void assertLuv(float l, float u, float v) {
+	protected void assertLuv(double l, double u, double v) {
 		final Offset<Double> tolerance = offset(.01);
 		final ColourLuv c2 = c.Luv();
 		assertThat(c2.L).isEqualTo(l, tolerance);
