@@ -52,9 +52,9 @@ public class ColourLab extends ColourAdapter {
 		final double y3 = pow(y, 3);
 		final double z3 = pow(z, 3);
 
-		x = (x3 > DIV_6_29_CUBED) ? x3 : (x - DIV_16_116) / DIV_29_6_SQR_DIV_3;
-		y = (y3 > DIV_6_29_CUBED) ? y3 : (y - DIV_16_116) / DIV_29_6_SQR_DIV_3;
-		z = (z3 > DIV_6_29_CUBED) ? z3 : (z - DIV_16_116) / DIV_29_6_SQR_DIV_3;
+		x = (x3 > _6_DIV_29_CUBED) ? x3 : (x - _16_DIV_116) / _29_DIV_6_SQR_DIV_3;
+		y = (y3 > _6_DIV_29_CUBED) ? y3 : (y - _16_DIV_116) / _29_DIV_6_SQR_DIV_3;
+		z = (z3 > _6_DIV_29_CUBED) ? z3 : (z - _16_DIV_116) / _29_DIV_6_SQR_DIV_3;
 
 		x *= this.illuminant.X();
 		y *= this.illuminant.Y();
@@ -99,7 +99,7 @@ public class ColourLab extends ColourAdapter {
 		final double C_2 = sqrt(pow(col2.a, 2) + pow(col2.b, 2));
 		final double C_b = (C_1 + C_2) * 0.5;
 		final double C_b7 = pow(C_b, 7);
-		final double G = 0.5 * (1 - sqrt(C_b7 / (C_b7 + POW_25_7)));
+		final double G = 0.5 * (1 - sqrt(C_b7 / (C_b7 + _25_POW_7)));
 		final double a1 = (1 + G) * col1.a;
 		final double a2 = (1 + G) * col2.a;
 		final double C1 = sqrt(pow(a1, 2) + pow(col1.b, 2));
@@ -134,7 +134,7 @@ public class ColourLab extends ColourAdapter {
 
 		final double dTh = 30 * Math.exp(-pow((hb - 275) / 25, 2)); // 16
 		final double Cb7 = pow(Cb, 7); // 17
-		final double Rc = 2 * sqrt(Cb7 / (Cb7 + POW_25_7));
+		final double Rc = 2 * sqrt(Cb7 / (Cb7 + _25_POW_7));
 		final double tmp1 = pow(Lb - 50, 2); // 18
 		final double Sl = 1 + (0.015 * tmp1) / (sqrt(20 + tmp1));
 		final double Sc = 1 + 0.045 * Cb;

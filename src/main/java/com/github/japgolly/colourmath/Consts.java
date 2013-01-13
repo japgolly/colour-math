@@ -1,5 +1,7 @@
 package com.github.japgolly.colourmath;
 
+import static java.lang.Math.pow;
+
 /**
  * TODOC: com.github.japgolly.colourmath.Consts
  * 
@@ -18,13 +20,17 @@ interface Consts {
 	double[][] BRADFORD_MI = { { 0.9869929, 0.4323053, -0.0085287 }, { -0.1470543, 0.5183603, 0.0400428 },
 			{ 0.1599627, 0.0492912, 0.9684867 } };
 
-	double DIV_16_116 = 16.0 / 116.0;
-	double DIV_6_29_CUBED = Math.pow(6.0 / 29.0, 3); // 0.008856451679035631
-	double DIV_29_6_SQR_DIV_3 = Math.pow(29.0 / 6.0, 2.0) / 3.0; // 7.787037037037035
-
-	double POW_25_7 = Math.pow(25, 7);
-
 	double PI = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;
-	double TAU = 2.0 * PI;
-	double DIV_180_PI = 180.0 / PI;
+
+	double TAU = 2. * PI;
+
+	double _6_DIV_29_CUBED = pow(6. / 29., 3.); // 0.008856451679035631
+
+	double _16_DIV_116 = 16. / 116.;
+
+	double _25_POW_7 = pow(25, 7);
+
+	double _29_DIV_6_SQR_DIV_3 = pow(29. / 6., 2.) / 3.; // 7.787037037037035
+
+	double _180_DIV_PI = 180. / PI;
 }

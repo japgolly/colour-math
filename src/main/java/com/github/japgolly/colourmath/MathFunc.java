@@ -56,11 +56,11 @@ final class MathFunc implements Consts {
 	}
 
 	public static double toDegrees(double rad) {
-		return rad * DIV_180_PI;
+		return rad * _180_DIV_PI;
 	}
 
 	public static double toRadians(double deg) {
-		return deg / DIV_180_PI;
+		return deg / _180_DIV_PI;
 	}
 
 }

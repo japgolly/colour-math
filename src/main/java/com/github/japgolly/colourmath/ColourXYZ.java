@@ -88,9 +88,9 @@ public class ColourXYZ extends ColourAdapter {
 		double _y = y / illuminant.Y();
 		double _z = z / illuminant.Z();
 
-		_x = (_x > DIV_6_29_CUBED) ? Math.pow(_x, 1.0 / 3.0) : DIV_29_6_SQR_DIV_3 * _x + DIV_16_116;
-		_y = (_y > DIV_6_29_CUBED) ? Math.pow(_y, 1.0 / 3.0) : DIV_29_6_SQR_DIV_3 * _y + DIV_16_116;
-		_z = (_z > DIV_6_29_CUBED) ? Math.pow(_z, 1.0 / 3.0) : DIV_29_6_SQR_DIV_3 * _z + DIV_16_116;
+		_x = (_x > _6_DIV_29_CUBED) ? Math.pow(_x, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _x + _16_DIV_116;
+		_y = (_y > _6_DIV_29_CUBED) ? Math.pow(_y, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _y + _16_DIV_116;
+		_z = (_z > _6_DIV_29_CUBED) ? Math.pow(_z, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _z + _16_DIV_116;
 
 		double l = 116.0 * _y - 16.0;
 		double a = 500.0 * (_x - _y);
