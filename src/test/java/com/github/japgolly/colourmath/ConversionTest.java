@@ -9,6 +9,8 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import lombok.RequiredArgsConstructor;
 
@@ -162,10 +164,11 @@ public class ConversionTest {
 		assertThat(actual).describedAs(desc).isEqualTo(expected);
 	}
 
-	protected double getToleranceForDoubles(String d) {
+	public static final Pattern DESC_TYPES = Pattern.compile("^Colour(.+?)\\d* → Colour(.+?)\\d*\\.\\S+$");
 
-		if (from(d, "RGB255")) {
-			return 0.2;
+	protected double getToleranceForDoubles(String d) {
+		if (sameColourSpace(d)) {
+			return 1. / 255.;
 		}
 		if (from(d, "HSL255")) {
 			return to(d, "XYZ") ? 1.0 : 2.0;
@@ -177,11 +180,24 @@ public class ConversionTest {
 	}
 
 	protected int getToleranceForInts(String d) {
-		if (to(d, "RGB255|HSL255")) {
-			return 1;
-		} else {
+		if (sameColourSpace(d)) {
 			return 0;
 		}
+		if (to(d, "RGB255|HSL255")) {
+			return 1;
+		}
+		return 0;
+	}
+
+	protected boolean sameColourSpace(String d) {
+		// Check if same colour space (eg. RGB01 -> RGB255)
+		Matcher m = DESC_TYPES.matcher(d);
+		if (m.matches()) {
+			if (m.group(1).equals(m.group(2))) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	protected boolean from(String desc, String colourSpaces) {
