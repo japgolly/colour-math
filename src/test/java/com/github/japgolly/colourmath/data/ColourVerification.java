@@ -71,4 +71,9 @@ public class ColourVerification implements Colour {
 	public double deltaE_2000(Colour otherColour) {
 		throw new UnsupportedOperationException();
 	}
+
+	public Double getSpecialCaseTolerance(String desc, Colour actual) {
+		return null;
+	}
+
 }

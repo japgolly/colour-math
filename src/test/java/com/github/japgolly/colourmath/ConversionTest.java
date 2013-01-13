@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import com.github.japgolly.colourmath.data.ColourVerification;
 import com.github.japgolly.colourmath.data.TestData;
 import com.github.japgolly.colourmath.illuminant.Illuminant;
 import com.github.japgolly.colourmath.illuminant.Illuminants;
@@ -43,7 +44,8 @@ public class ConversionTest {
 	}
 
 	private final String dataName;
-	private Colour testData;
+	private ColourVerification testData;
+	private Colour tmpLatestActualColour;
 
 	@Before
 	public void setup() {
@@ -97,6 +99,9 @@ public class ConversionTest {
 					assertValues(subject.getClass().getSimpleName(), type, a, e, true);
 				}
 			}
+		} catch (AssertionError e) {
+			System.out.printf("FAIL: %s\n", tmpLatestActualColour);
+			throw e;
 		} finally {
 			log("");
 		}
@@ -134,6 +139,7 @@ public class ConversionTest {
 	@SuppressWarnings("rawtypes")
 	protected void assertColours(String desc, Colour actual, Colour expected) throws Exception {
 		assertThat((Class) actual.getClass()).isEqualTo(expected.getClass());
+		tmpLatestActualColour = actual;
 
 		for (Field f : expected.getClass().getFields()) {
 			if ((f.getModifiers() & (Modifier.STATIC)) != 0) {
@@ -167,6 +173,13 @@ public class ConversionTest {
 	public static final Pattern DESC_TYPES = Pattern.compile("^Colour(.+?)\\d* → Colour(.+?)\\d*\\.\\S+$");
 
 	protected double getToleranceForDoubles(String d) {
+		Double r = testData.getSpecialCaseTolerance(d, tmpLatestActualColour);
+		if (r != null) {
+			return r;
+		}
+		if (isHSLandColourless(d)) {
+			return 9999;
+		}
 		if (sameColourSpace(d)) {
 			return 1. / 255.;
 		}
@@ -180,13 +193,39 @@ public class ConversionTest {
 	}
 
 	protected int getToleranceForInts(String d) {
+		Double r = testData.getSpecialCaseTolerance(d, tmpLatestActualColour);
+		if (r != null) {
+			return r.intValue();
+		}
+		if (isHSLandColourless(d)) {
+			return 9999;
+		}
 		if (sameColourSpace(d)) {
 			return 0;
 		}
 		if (to(d, "RGB255|HSL255")) {
-			return 1;
+			return from(d, "RGB255|HSL255") ? 2 : 1;
 		}
 		return 0;
+	}
+
+	protected boolean isHSLandColourless(String d) {
+		// Ignore hue & sat when lum is 0 or 1
+		if (d.matches(".*HSL\\d+\\.[hs]")) {
+			if (tmpLatestActualColour instanceof ColourHSL255) {
+				ColourHSL255 c = (ColourHSL255) tmpLatestActualColour;
+				if (c.l == 0 || c.l == 255) {
+					return true;
+				}
+			}
+			if (tmpLatestActualColour instanceof ColourHSL01) {
+				ColourHSL01 c = (ColourHSL01) tmpLatestActualColour;
+				if (c.l < (1. / 255.) || c.l > (254. / 255.)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	protected boolean sameColourSpace(String d) {

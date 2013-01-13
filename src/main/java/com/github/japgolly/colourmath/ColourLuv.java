@@ -23,7 +23,7 @@ public class ColourLuv extends ColourAdapter {
 	public final Illuminant illuminant;
 
 	ColourLuv(double L, double u, double v, Illuminant illuminant) {
-		Conditions.assert100(L);
+		// Conditions.assert100(L); // TODO L*u*v*, L* can be > 100 due to illuminant
 		// Conditions.assert_pm_100(u, v); // TODO L*u*v* ranges > 100.
 		this.L = L;
 		this.u = u;
@@ -38,14 +38,25 @@ public class ColourLuv extends ColourAdapter {
 
 	@Override
 	public ColourXYZ XYZ(Illuminant i) {
-		final double L13 = L * 13.;
-		final double u_ = u / L13 + illuminant.u_();
-		final double v_ = v / L13 + illuminant.v_();
+		final double u_, v_;
+		if (L == 0) {
+			u_ = illuminant.u_();
+			v_ = illuminant.v_();
+		} else {
+			final double L13 = L * 13.;
+			u_ = u / L13 + illuminant.u_();
+			v_ = v / L13 + illuminant.v_();
+		}
 
 		final double Y = (L <= 8.) ? illuminant.Y() * L * _3_DIV_29_CUBED : illuminant.Y() * pow((L + 16.) / 116., 3.);
-		final double v_4 = v_ * 4.;
-		final double X = Y * 9. * u_ / v_4;
-		final double Z = Y * (12. - 3. * u_ - 20 * v_) / v_4;
+		final double X, Z;
+		if (v_ == 0) {
+			X = Z = 0;
+		} else {
+			final double v_4 = v_ * 4.;
+			X = Y * 9. * u_ / v_4;
+			Z = Y * (12. - 3. * u_ - 20 * v_) / v_4;
+		}
 
 		return new ColourXYZ(X, Y, Z, illuminant).XYZ(i);
 	}

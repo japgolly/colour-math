@@ -29,7 +29,7 @@ public class ColourLab extends ColourAdapter {
 	public final Illuminant illuminant;
 
 	ColourLab(double L, double a, double b, Illuminant illuminant) {
-		Conditions.assert100(L);
+		// Conditions.assert100(L); // TODO L*a*b*, L* can be > 100 due to illuminant
 		Conditions.assert128_127(a, b);
 		this.L = L;
 		this.a = a;

@@ -111,8 +111,13 @@ public class ColourXYZ extends ColourAdapter {
 				(y_div_yn <= _6_DIV_29_CUBED) ? _29_DIV_3_CUBED * y_div_yn : 116. * pow(y_div_yn, 1. / 3.) - 16;
 
 		final double uv_denom = X + 15. * Y + 3. * Z;
-		final double u_ = 4. * X / uv_denom;
-		final double v_ = 9. * Y / uv_denom;
+		final double u_, v_;
+		if (uv_denom == 0) {
+			u_ = v_ = 0;
+		} else {
+			u_ = 4. * X / uv_denom;
+			v_ = 9. * Y / uv_denom;
+		}
 
 		final double L13 = L * 13.;
 		final double u = L13 * (u_ - illuminant.u_());

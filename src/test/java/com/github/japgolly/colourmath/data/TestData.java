@@ -3,7 +3,6 @@ package com.github.japgolly.colourmath.data;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.github.japgolly.colourmath.Colour;
 import com.github.japgolly.colourmath.ColourFactory;
 import com.github.japgolly.colourmath.illuminant.Illuminants;
 
@@ -20,15 +19,17 @@ public class TestData {
 
 	private final static ColourFactory CF = ColourFactory.getInstance();
 
-	public final static Map<String, Colour> TEST_DATA = new LinkedHashMap<String, Colour>();
+	public final static Map<String, ColourVerification> TEST_DATA = new LinkedHashMap<String, ColourVerification>();
 
 	static {
 		Illuminants.setDefault(Illuminants.CIE1931.D65);
-		TEST_DATA.put("0x123456", get_123456());
-		TEST_DATA.put("0xDC1030", get_DC1030());
+		TEST_DATA.put("0x123456", _123456());
+		TEST_DATA.put("0xDC1030", DC1030());
+		TEST_DATA.put("Black", black());
+		TEST_DATA.put("White", white());
 	}
 
-	public static Colour get_123456() {
+	public static ColourVerification _123456() {
 		// HTTP = #123456
 		// Web safe = #003366
 		// RGB 0-255 = 18.00 52.00 86.00
@@ -72,7 +73,7 @@ public class TestData {
 		return c;
 	}
 
-	public static Colour get_DC1030() {
+	public static ColourVerification DC1030() {
 		// HTTP = #DC1030
 		// Web safe = #CC0033
 		// RGB 0-255 = 220.00 16.00 48.00
@@ -104,6 +105,27 @@ public class TestData {
 		c.XYZ = CF.XYZ(30.2378, 15.8047, 4.2543);
 		c.Lab = CF.Lab(46.7173, 70.9967, 40.2673);
 		c.Luv = CF.Luv(46.7173, 142.1252, 24.0155);
+		return c;
+	}
+
+	public static ColourVerification black() {
+		ColourVerification c = new ColourVerification(0xFF000000, 0x000000FF, 0x000000);
+		c.setRGB(0, 0, 0);
+		c.setHSL01(0, 0, 0);
+		c.XYZ = CF.XYZ(0, 0, 0);
+		c.Lab = CF.Lab(0, 0, 0);
+		c.Luv = CF.Luv(0, 0, 0);
+		return c;
+	}
+
+	public static ColourVerification white() {
+		ColourVerification c = new ColourVerification(0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFF);
+		c.setRGB(255, 255, 255);
+		c.setHSL01(0, 0, 1);
+		c.XYZ = CF.XYZ(95.0470, 100, 108.8830);
+		c.Lab = CF.Lab(100, 0, 0);
+		c.Luv = CF.Luv(100, 0, 0);
+
 		return c;
 	}
 }
