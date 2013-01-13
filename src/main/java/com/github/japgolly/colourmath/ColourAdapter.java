@@ -65,6 +65,16 @@ abstract class ColourAdapter implements Colour, Consts {
 	}
 
 	@Override
+	public final ColourLuv Luv() {
+		return Luv(Illuminants.getDefault());
+	}
+
+	@Override
+	public ColourLuv Luv(Illuminant illuminant) {
+		return XYZ(illuminant).Luv(illuminant);
+	}
+
+	@Override
 	public double deltaE_94(Colour otherColour) {
 		return Lab().deltaE_94(otherColour);
 	}

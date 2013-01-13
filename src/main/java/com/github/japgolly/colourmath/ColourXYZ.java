@@ -1,5 +1,7 @@
 package com.github.japgolly.colourmath;
 
+import static java.lang.Math.pow;
+
 import javax.annotation.concurrent.Immutable;
 
 import lombok.EqualsAndHashCode;
@@ -37,8 +39,7 @@ public class ColourXYZ extends ColourAdapter {
 
 		// Create cone response domains (source + dest)
 		final double[] crdS =
-				MathFunc.multiply(
-						new double[][] { { this.illuminant.X(), this.illuminant.Y(), this.illuminant.Z() } },
+				MathFunc.multiply(new double[][] { { this.illuminant.X(), this.illuminant.Y(), this.illuminant.Z() } },
 						BRADFORD_M)[0];
 		final double[] crdD =
 				MathFunc.multiply(new double[][] { { illuminant.X(), illuminant.Y(), illuminant.Z() } }, BRADFORD_M)[0];
@@ -67,9 +68,9 @@ public class ColourXYZ extends ColourAdapter {
 		double g = MathFunc.multiplyRow(XYZ_TO_sRGB[1], x, y, z);
 		double b = MathFunc.multiplyRow(XYZ_TO_sRGB[2], x, y, z);
 
-		r = (r > 0.0031308) ? 1.055 * Math.pow(r, 1.0 / 2.4) - 0.055 : 12.92 * r;
-		g = (g > 0.0031308) ? 1.055 * Math.pow(g, 1.0 / 2.4) - 0.055 : 12.92 * g;
-		b = (b > 0.0031308) ? 1.055 * Math.pow(b, 1.0 / 2.4) - 0.055 : 12.92 * b;
+		r = (r > 0.0031308) ? 1.055 * pow(r, 1.0 / 2.4) - 0.055 : 12.92 * r;
+		g = (g > 0.0031308) ? 1.055 * pow(g, 1.0 / 2.4) - 0.055 : 12.92 * g;
+		b = (b > 0.0031308) ? 1.055 * pow(b, 1.0 / 2.4) - 0.055 : 12.92 * b;
 
 		float fr = Math.max(0f, Math.min(1.0f, (float) r));
 		float fg = Math.max(0f, Math.min(1.0f, (float) g));
@@ -88,14 +89,35 @@ public class ColourXYZ extends ColourAdapter {
 		double _y = y / illuminant.Y();
 		double _z = z / illuminant.Z();
 
-		_x = (_x > _6_DIV_29_CUBED) ? Math.pow(_x, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _x + _16_DIV_116;
-		_y = (_y > _6_DIV_29_CUBED) ? Math.pow(_y, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _y + _16_DIV_116;
-		_z = (_z > _6_DIV_29_CUBED) ? Math.pow(_z, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _z + _16_DIV_116;
+		_x = (_x > _6_DIV_29_CUBED) ? pow(_x, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _x + _16_DIV_116;
+		_y = (_y > _6_DIV_29_CUBED) ? pow(_y, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _y + _16_DIV_116;
+		_z = (_z > _6_DIV_29_CUBED) ? pow(_z, 1.0 / 3.0) : _29_DIV_6_SQR_DIV_3 * _z + _16_DIV_116;
 
 		double l = 116.0 * _y - 16.0;
 		double a = 500.0 * (_x - _y);
 		double b = 200.0 * (_y - _z);
 
 		return new ColourLab(l, a, b, illuminant);
+	}
+
+	@Override
+	public ColourLuv Luv(Illuminant illuminant) {
+		if (!this.illuminant.equals(illuminant)) {
+			return XYZ(illuminant).Luv(illuminant);
+		}
+
+		final double y_div_yn = y / illuminant.Y();
+		final double L =
+				(y_div_yn <= _6_DIV_29_CUBED) ? _29_DIV_3_CUBED * y_div_yn : 116. * pow(y_div_yn, 1. / 3.) - 16;
+
+		final double uv_denom = x + 15. * y + 3. * z;
+		final double u_ = 4. * x / uv_denom;
+		final double v_ = 9. * y / uv_denom;
+
+		final double L13 = L * 13.;
+		final double u = L13 * (u_ - illuminant.u_());
+		final double v = L13 * (v_ - illuminant.v_());
+
+		return new ColourLuv(L, u, v, illuminant);
 	}
 }

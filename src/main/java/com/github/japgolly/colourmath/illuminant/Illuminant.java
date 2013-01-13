@@ -16,4 +16,14 @@ public interface Illuminant {
 	double X();
 
 	double Z();
+
+	/**
+	 * <tt>u′,v′</tt> are chromaticity coordinates.
+	 */
+	double u_();
+
+	/**
+	 * <tt>u′,v′</tt> are chromaticity coordinates.
+	 */
+	double v_();
 }

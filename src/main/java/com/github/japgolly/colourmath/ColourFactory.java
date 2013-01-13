@@ -102,4 +102,23 @@ public class ColourFactory {
 	public ColourLab Lab(double[] lab, Illuminant illuminant) {
 		return new ColourLab(lab[0], lab[1], lab[2], illuminant);
 	}
+
+	// ------------------------------------------------------------------------------------
+
+	public ColourLuv Luv(double l, double u, double v) {
+		return new ColourLuv(l, u, v, Illuminants.getDefault());
+	}
+
+	public ColourLuv Luv(double[] lab) {
+		return new ColourLuv(lab[0], lab[1], lab[2], Illuminants.getDefault());
+	}
+
+	public ColourLuv Luv(double l, double u, double v, Illuminant illuminant) {
+		return new ColourLuv(l, u, v, illuminant);
+	}
+
+	public ColourLuv Luv(double[] lab, Illuminant illuminant) {
+		return new ColourLuv(lab[0], lab[1], lab[2], illuminant);
+	}
+
 }

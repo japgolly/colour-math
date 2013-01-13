@@ -17,6 +17,12 @@ final class Conditions {
 		}
 	}
 
+	public static void assert_pm_100(double a, double b) {
+		if (a < -100. || a > 100. || b < -100. || b > 100.) {
+			throw err("Illegal value(s): %f,%f. Valid range is [-100,100].", a, b);
+		}
+	}
+
 	public static void assert128_127(double a, double b) {
 		if (a < -128. || a > 127. || b < -128. || b > 127.) {
 			throw err("Illegal value(s): %f,%f. Valid range is [-128,127].", a, b);

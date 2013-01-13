@@ -96,6 +96,11 @@ public abstract class Conversion123456TestBase {
 		assertLAB(21.043f, 1.059f, -24.105f);
 	}
 
+	@Test
+	public void testLuv() {
+		assertLuv(21.043f, -10.831f, -27.651f);
+	}
+
 	// -----------------------------------------------------------------------------------------------------------------
 
 	protected void assertRGB01(float r, float g, float b) {
@@ -142,5 +147,13 @@ public abstract class Conversion123456TestBase {
 		assertThat(c2.l).isEqualTo(l, tolerance);
 		assertThat(c2.a).isEqualTo(a, tolerance);
 		assertThat(c2.b).isEqualTo(b, tolerance);
+	}
+
+	protected void assertLuv(float l, float u, float v) {
+		final Offset<Double> tolerance = offset(.01);
+		final ColourLuv c2 = c.Luv();
+		assertThat(c2.l).isEqualTo(l, tolerance);
+		assertThat(c2.u).isEqualTo(u, tolerance);
+		assertThat(c2.v).isEqualTo(v, tolerance);
 	}
 }
