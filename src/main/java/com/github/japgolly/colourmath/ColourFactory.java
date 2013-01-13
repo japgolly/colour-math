@@ -41,6 +41,10 @@ public class ColourFactory {
 		return new ColourRGB01(rgb[0], rgb[1], rgb[2]);
 	}
 
+	public ColourRGB01 RGB01(float[] rgb) {
+		return new ColourRGB01(rgb[0], rgb[1], rgb[2]);
+	}
+
 	public ColourRGB255 RGB255(int r, int g, int b) {
 		return new ColourRGB255(r, g, b);
 	}
@@ -56,6 +60,10 @@ public class ColourFactory {
 	}
 
 	public ColourHSL01 HSL01(double[] hsl) {
+		return new ColourHSL01(hsl[0], hsl[1], hsl[2]);
+	}
+
+	public ColourHSL01 HSL01(float[] hsl) {
 		return new ColourHSL01(hsl[0], hsl[1], hsl[2]);
 	}
 
@@ -85,6 +93,14 @@ public class ColourFactory {
 		return new ColourXYZ(XYZ[0], XYZ[1], XYZ[2], illuminant);
 	}
 
+	public ColourXYZ XYZ(float[] XYZ) {
+		return new ColourXYZ(XYZ[0], XYZ[1], XYZ[2], Illuminants.getDefault());
+	}
+
+	public ColourXYZ XYZ(float[] XYZ, Illuminant illuminant) {
+		return new ColourXYZ(XYZ[0], XYZ[1], XYZ[2], illuminant);
+	}
+
 	// ------------------------------------------------------------------------------------
 
 	public ColourLab Lab(double L, double a, double b) {
@@ -103,6 +119,14 @@ public class ColourFactory {
 		return new ColourLab(Lab[0], Lab[1], Lab[2], illuminant);
 	}
 
+	public ColourLab Lab(float[] Lab) {
+		return new ColourLab(Lab[0], Lab[1], Lab[2], Illuminants.getDefault());
+	}
+
+	public ColourLab Lab(float[] Lab, Illuminant illuminant) {
+		return new ColourLab(Lab[0], Lab[1], Lab[2], illuminant);
+	}
+
 	// ------------------------------------------------------------------------------------
 
 	public ColourLuv Luv(double L, double u, double v) {
@@ -118,6 +142,14 @@ public class ColourFactory {
 	}
 
 	public ColourLuv Luv(double[] Luv, Illuminant illuminant) {
+		return new ColourLuv(Luv[0], Luv[1], Luv[2], illuminant);
+	}
+
+	public ColourLuv Luv(float[] Luv) {
+		return new ColourLuv(Luv[0], Luv[1], Luv[2], Illuminants.getDefault());
+	}
+
+	public ColourLuv Luv(float[] Luv, Illuminant illuminant) {
 		return new ColourLuv(Luv[0], Luv[1], Luv[2], illuminant);
 	}
 
