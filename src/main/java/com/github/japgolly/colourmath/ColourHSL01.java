@@ -24,6 +24,20 @@ public class ColourHSL01 extends ColourAdapter {
 		this.l = l;
 	}
 
+	public double[] toArray(double[] array) {
+		array[0] = h;
+		array[1] = s;
+		array[2] = l;
+		return array;
+	}
+
+	public float[] toArray(float[] array) {
+		array[0] = (float) h;
+		array[1] = (float) s;
+		array[2] = (float) l;
+		return array;
+	}
+
 	@Override
 	public ColourHSL01 HSL01() {
 		return this;

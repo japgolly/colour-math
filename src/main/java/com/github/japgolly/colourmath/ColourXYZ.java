@@ -31,6 +31,20 @@ public class ColourXYZ extends ColourAdapter {
 		this.illuminant = illuminant;
 	}
 
+	public double[] toArray(double[] array) {
+		array[0] = X;
+		array[1] = Y;
+		array[2] = Z;
+		return array;
+	}
+
+	public float[] toArray(float[] array) {
+		array[0] = (float) X;
+		array[1] = (float) Y;
+		array[2] = (float) Z;
+		return array;
+	}
+
 	@Override
 	public ColourXYZ XYZ(Illuminant illuminant) {
 		if (this.illuminant.equals(illuminant)) {

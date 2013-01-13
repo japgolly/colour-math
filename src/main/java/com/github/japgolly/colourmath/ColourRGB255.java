@@ -40,6 +40,13 @@ public class ColourRGB255 extends ColourAdapter {
 		this(r, g, b);
 	}
 
+	public int[] toArray(int[] array) {
+		array[0] = r;
+		array[1] = g;
+		array[2] = b;
+		return array;
+	}
+
 	@Override
 	public ColourRGB255 RGB255() {
 		return this;

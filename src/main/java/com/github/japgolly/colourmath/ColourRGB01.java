@@ -26,6 +26,20 @@ public class ColourRGB01 extends ColourAdapter {
 		this.b = b;
 	}
 
+	public double[] toArray(double[] array) {
+		array[0] = r;
+		array[1] = g;
+		array[2] = b;
+		return array;
+	}
+
+	public float[] toArray(float[] array) {
+		array[0] = (float) r;
+		array[1] = (float) g;
+		array[2] = (float) b;
+		return array;
+	}
+
 	@Override
 	public ColourRGB01 RGB01() {
 		return this;

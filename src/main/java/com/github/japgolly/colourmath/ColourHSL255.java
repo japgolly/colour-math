@@ -40,6 +40,13 @@ public class ColourHSL255 extends ColourAdapter {
 		this(h, s, l);
 	}
 
+	public int[] toArray(int[] array) {
+		array[0] = h;
+		array[1] = s;
+		array[2] = l;
+		return array;
+	}
+
 	@Override
 	public ColourHSL255 HSL255() {
 		return this;

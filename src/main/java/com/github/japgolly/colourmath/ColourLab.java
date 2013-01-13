@@ -37,6 +37,20 @@ public class ColourLab extends ColourAdapter {
 		this.illuminant = illuminant;
 	}
 
+	public double[] toArray(double[] array) {
+		array[0] = L;
+		array[1] = a;
+		array[2] = b;
+		return array;
+	}
+
+	public float[] toArray(float[] array) {
+		array[0] = (float) L;
+		array[1] = (float) a;
+		array[2] = (float) b;
+		return array;
+	}
+
 	@Override
 	public ColourRGB01 RGB01() {
 		return XYZ().RGB01();
