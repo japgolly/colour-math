@@ -7,6 +7,8 @@ package com.github.japgolly.colourmath.illuminant;
  */
 public interface Illuminant {
 
+	int temperature();
+
 	double Y();
 
 	double x();

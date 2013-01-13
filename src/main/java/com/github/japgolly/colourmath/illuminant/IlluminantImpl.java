@@ -14,22 +14,30 @@ import lombok.EqualsAndHashCode;
 public class IlluminantImpl implements Illuminant {
 
 	private final String name;
+	private final int temperature;
 	private final double Y, x, y, X, Z;
 	private final double u_, v_;
 
-	public IlluminantImpl(String name, double Y, double x, double y, double X, double Z) {
+	public IlluminantImpl(String name, int temperature, double Y, double x, double y, double X, double Z) {
+		this(name, temperature, Y, x, y, X, Z, 4. * X / (X + 15. * Y + 3. * Z), 9. * Y / (X + 15. * Y + 3. * Z));
+	}
+
+	public IlluminantImpl(String name, int temperature, double Y, double x, double y, double X, double Z, double u_,
+			double v_) {
 		this.name = name;
+		this.temperature = temperature;
 		this.Y = Y;
 		this.x = x;
 		this.y = y;
 		this.X = X;
 		this.Z = Z;
+		this.u_ = u_;
+		this.v_ = v_;
+	}
 
-		// TODO pre-calc u_/v_ in Illuminants
-		// http://en.wikipedia.org/wiki/CIELUV
-		final double uv_denom = X + 15. * Y + 3. * Z;
-		this.u_ = 4. * X / uv_denom;
-		this.v_ = 9. * Y / uv_denom;
+	@Override
+	public int temperature() {
+		return temperature;
 	}
 
 	@Override
