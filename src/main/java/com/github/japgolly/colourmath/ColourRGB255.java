@@ -24,18 +24,6 @@ public class ColourRGB255 extends ColourAdapter {
 		this.b = b;
 	}
 
-	public int getBlue() {
-		return b;
-	}
-
-	public int getRed() {
-		return r;
-	}
-
-	public int getGreen() {
-		return g;
-	}
-
 	@Override
 	public ColourRGB255 RGB255() {
 		return this;
