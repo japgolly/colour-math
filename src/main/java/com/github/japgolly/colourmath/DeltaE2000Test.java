@@ -71,8 +71,8 @@ public class DeltaE2000Test {
 
 	@Test
 	public void test() {
-		final ColourLAB c1 = ColourFactory.getInstance().LAB(l1, a1, b1);
-		final ColourLAB c2 = ColourFactory.getInstance().LAB(l2, a2, b2);
+		final ColourLab c1 = ColourFactory.getInstance().LAB(l1, a1, b1);
+		final ColourLab c2 = ColourFactory.getInstance().LAB(l2, a2, b2);
 		double r = c1.deltaE_2000(c2);
 		assertThat(r).isEqualTo(dE2000, tolerance);
 	}

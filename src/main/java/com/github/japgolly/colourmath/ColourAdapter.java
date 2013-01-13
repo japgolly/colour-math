@@ -11,23 +11,23 @@ import com.github.japgolly.colourmath.illuminant.Illuminants;
 abstract class ColourAdapter implements Colour, Consts {
 
 	@Override
-	public int argb() {
-		return rgb255().argb();
+	public int ARGB() {
+		return RGB255().ARGB();
 	}
 
 	@Override
-	public int rgba() {
-		return rgb255().rgba();
+	public int RGBA() {
+		return RGB255().RGBA();
 	}
 
 	@Override
-	public int rgb() {
-		return rgb255().rgb();
+	public int RGB() {
+		return RGB255().RGB();
 	}
 
 	@Override
-	public ColourRGB255 rgb255() {
-		return rgb01().rgb255();
+	public ColourRGB255 RGB255() {
+		return RGB01().RGB255();
 	}
 
 	// @Override
@@ -35,42 +35,42 @@ abstract class ColourAdapter implements Colour, Consts {
 	// }
 
 	@Override
-	public ColourHSL01 hsl01() {
-		return rgb01().hsl01();
+	public ColourHSL01 HSL01() {
+		return RGB01().HSL01();
 	}
 
 	@Override
-	public ColourHSL255 hsl255() {
-		return hsl01().hsl255();
+	public ColourHSL255 HSL255() {
+		return HSL01().HSL255();
 	}
 
 	@Override
-	public final ColourXYZ xyz() {
-		return xyz(Illuminants.getDefault());
+	public final ColourXYZ XYZ() {
+		return XYZ(Illuminants.getDefault());
 	}
 
 	@Override
-	public ColourXYZ xyz(Illuminant illuminant) {
-		return rgb01().xyz(illuminant);
+	public ColourXYZ XYZ(Illuminant illuminant) {
+		return RGB01().XYZ(illuminant);
 	}
 
 	@Override
-	public final ColourLAB lab() {
-		return lab(Illuminants.getDefault());
+	public final ColourLab Lab() {
+		return Lab(Illuminants.getDefault());
 	}
 
 	@Override
-	public ColourLAB lab(Illuminant illuminant) {
-		return xyz(illuminant).lab(illuminant);
+	public ColourLab Lab(Illuminant illuminant) {
+		return XYZ(illuminant).Lab(illuminant);
 	}
 
 	@Override
 	public double deltaE_94(Colour otherColour) {
-		return lab().deltaE_94(otherColour);
+		return Lab().deltaE_94(otherColour);
 	}
 
 	@Override
 	public double deltaE_2000(Colour otherColour) {
-		return lab().deltaE_2000(otherColour);
+		return Lab().deltaE_2000(otherColour);
 	}
 }

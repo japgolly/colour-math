@@ -53,17 +53,17 @@ public abstract class Conversion123456TestBase {
 
 	@Test
 	public void testRGB() {
-		assertThat(c.rgb()).isEqualTo(0x123456);
+		assertThat(c.RGB()).isEqualTo(0x123456);
 	}
 
 	@Test
 	public void testARGB() {
-		assertThat(c.argb()).isEqualTo(0xFF123456);
+		assertThat(c.ARGB()).isEqualTo(0xFF123456);
 	}
 
 	@Test
 	public void testRGBA() {
-		assertThat(c.rgba()).isEqualTo(0x123456FF);
+		assertThat(c.RGBA()).isEqualTo(0x123456FF);
 	}
 
 	@Test
@@ -100,14 +100,14 @@ public abstract class Conversion123456TestBase {
 
 	protected void assertRGB01(float r, float g, float b) {
 		final Offset<Float> tolerance = offset(.00001f);
-		final ColourRGB01 c2 = c.rgb01();
+		final ColourRGB01 c2 = c.RGB01();
 		assertThat(c2.r).isEqualTo(r, tolerance);
 		assertThat(c2.g).isEqualTo(g, tolerance);
 		assertThat(c2.b).isEqualTo(b, tolerance);
 	}
 
 	protected void assertRGB255(int r, int g, int b) {
-		final ColourRGB255 c2 = c.rgb255();
+		final ColourRGB255 c2 = c.RGB255();
 		assertThat(c2.r).isEqualTo(r);
 		assertThat(c2.g).isEqualTo(g);
 		assertThat(c2.b).isEqualTo(b);
@@ -115,14 +115,14 @@ public abstract class Conversion123456TestBase {
 
 	protected void assertHSL01(float h, float s, float l) {
 		final Offset<Float> tolerance = offset(.0005f);
-		final ColourHSL01 c2 = c.hsl01();
+		final ColourHSL01 c2 = c.HSL01();
 		assertThat(c2.h).isEqualTo(h, tolerance);
 		assertThat(c2.s).isEqualTo(s, tolerance);
 		assertThat(c2.l).isEqualTo(l, tolerance);
 	}
 
 	protected void assertHSL255(int h, int s, int l) {
-		final ColourHSL255 c2 = c.hsl255();
+		final ColourHSL255 c2 = c.HSL255();
 		assertThat(c2.h).isEqualTo(h);
 		assertThat(c2.s).isEqualTo(s);
 		assertThat(c2.l).isEqualTo(l);
@@ -130,7 +130,7 @@ public abstract class Conversion123456TestBase {
 
 	protected void assertXYZ(float x, float y, float z) {
 		final Offset<Double> tolerance = offset(.01);
-		final ColourXYZ c2 = c.xyz();
+		final ColourXYZ c2 = c.XYZ();
 		assertThat(c2.x).isEqualTo(x, tolerance);
 		assertThat(c2.y).isEqualTo(y, tolerance);
 		assertThat(c2.z).isEqualTo(z, tolerance);
@@ -138,7 +138,7 @@ public abstract class Conversion123456TestBase {
 
 	protected void assertLAB(float l, float a, float b) {
 		final Offset<Double> tolerance = offset(.01);
-		final ColourLAB c2 = c.lab();
+		final ColourLab c2 = c.Lab();
 		assertThat(c2.l).isEqualTo(l, tolerance);
 		assertThat(c2.a).isEqualTo(a, tolerance);
 		assertThat(c2.b).isEqualTo(b, tolerance);

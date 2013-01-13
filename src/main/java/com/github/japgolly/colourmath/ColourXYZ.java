@@ -30,7 +30,7 @@ public class ColourXYZ extends ColourAdapter {
 	}
 
 	@Override
-	public ColourXYZ xyz(Illuminant illuminant) {
+	public ColourXYZ XYZ(Illuminant illuminant) {
 		if (this.illuminant.equals(illuminant)) {
 			return this;
 		}
@@ -54,9 +54,9 @@ public class ColourXYZ extends ColourAdapter {
 	}
 
 	@Override
-	public ColourRGB01 rgb01() {
+	public ColourRGB01 RGB01() {
 		if (!illuminant.equals(CIE1931.D65)) {
-			return xyz(CIE1931.D65).rgb01();
+			return XYZ(CIE1931.D65).RGB01();
 		}
 
 		double x = this.x / 100.0;
@@ -79,9 +79,9 @@ public class ColourXYZ extends ColourAdapter {
 	}
 
 	@Override
-	public ColourLAB lab(Illuminant illuminant) {
+	public ColourLab Lab(Illuminant illuminant) {
 		if (!this.illuminant.equals(illuminant)) {
-			return xyz(illuminant).lab(illuminant);
+			return XYZ(illuminant).Lab(illuminant);
 		}
 
 		double _x = x / illuminant.X();
@@ -96,6 +96,6 @@ public class ColourXYZ extends ColourAdapter {
 		double a = 500.0 * (_x - _y);
 		double b = 200.0 * (_y - _z);
 
-		return new ColourLAB(l, a, b, illuminant);
+		return new ColourLab(l, a, b, illuminant);
 	}
 }

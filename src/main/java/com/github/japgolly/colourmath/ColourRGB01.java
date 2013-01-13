@@ -28,17 +28,17 @@ public class ColourRGB01 extends ColourAdapter {
 	}
 
 	@Override
-	public ColourRGB01 rgb01() {
+	public ColourRGB01 RGB01() {
 		return this;
 	}
 
 	@Override
-	public ColourRGB255 rgb255() {
+	public ColourRGB255 RGB255() {
 		return new ColourRGB255((int) (r * 255f), (int) (g * 255f), (int) (b * 255f));
 	}
 
 	@Override
-	public ColourHSL01 hsl01() {
+	public ColourHSL01 HSL01() {
 		float max = Math.max(r, Math.max(g, b));
 		float min = Math.min(r, Math.min(g, b));
 		float h, s, l = (max + min) * 0.5f;
@@ -62,7 +62,7 @@ public class ColourRGB01 extends ColourAdapter {
 	}
 
 	@Override
-	public ColourXYZ xyz(Illuminant illuminant) {
+	public ColourXYZ XYZ(Illuminant illuminant) {
 		double r = this.r;
 		double g = this.g;
 		double b = this.b;
@@ -81,6 +81,6 @@ public class ColourRGB01 extends ColourAdapter {
 
 		final ColourXYZ c = new ColourXYZ(x, y, z, CIE1931.D65);
 
-		return c.illuminant.equals(illuminant) ? c : c.xyz(illuminant);
+		return c.illuminant.equals(illuminant) ? c : c.XYZ(illuminant);
 	}
 }

@@ -23,11 +23,11 @@ import com.github.japgolly.colourmath.illuminant.Illuminant;
 @Immutable
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class ColourLAB extends ColourAdapter {
+public class ColourLab extends ColourAdapter {
 	@Wither public final double l, a, b;
 	public final Illuminant illuminant;
 
-	ColourLAB(double l, double a, double b, Illuminant illuminant) {
+	ColourLab(double l, double a, double b, Illuminant illuminant) {
 		Conditions.assert100(l);
 		Conditions.assert128_127(a, b);
 		this.l = l;
@@ -37,12 +37,12 @@ public class ColourLAB extends ColourAdapter {
 	}
 
 	@Override
-	public ColourRGB01 rgb01() {
-		return xyz().rgb01();
+	public ColourRGB01 RGB01() {
+		return XYZ().RGB01();
 	}
 
 	@Override
-	public ColourXYZ xyz(Illuminant illuminant) {
+	public ColourXYZ XYZ(Illuminant illuminant) {
 		double y = (l + 16.0) / 116.0;
 		double x = a / 500.0 + y;
 		double z = y - b / 200.0;
@@ -59,21 +59,21 @@ public class ColourLAB extends ColourAdapter {
 		y *= this.illuminant.Y();
 		z *= this.illuminant.Z();
 
-		return new ColourXYZ(x, y, z, this.illuminant).xyz(illuminant);
+		return new ColourXYZ(x, y, z, this.illuminant).XYZ(illuminant);
 	}
 
 	@Override
-	public ColourLAB lab(Illuminant illuminant) {
+	public ColourLab Lab(Illuminant illuminant) {
 		if (this.illuminant.equals(illuminant)) {
 			return this;
 		}
-		return xyz(illuminant).lab(illuminant);
+		return XYZ(illuminant).Lab(illuminant);
 	}
 
 	@Override
 	public double deltaE_94(Colour otherColour) {
-		final ColourLAB lab1 = this;
-		final ColourLAB lab2 = otherColour.lab(illuminant);
+		final ColourLab lab1 = this;
+		final ColourLab lab2 = otherColour.Lab(illuminant);
 
 		final double c1 = sqrt(lab1.a * lab1.a + lab1.b * lab1.b);
 		final double c2 = sqrt(lab2.a * lab2.a + lab2.b * lab2.b);
@@ -90,8 +90,8 @@ public class ColourLAB extends ColourAdapter {
 
 	@Override
 	public double deltaE_2000(Colour otherColour) {
-		final ColourLAB col1 = this;
-		final ColourLAB col2 = otherColour.lab(illuminant);
+		final ColourLab col1 = this;
+		final ColourLab col2 = otherColour.Lab(illuminant);
 
 		// steps 2 - 7
 		final double C_1 = sqrt(pow(col1.a, 2) + pow(col1.b, 2));

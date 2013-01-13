@@ -37,27 +37,27 @@ public class ColourRGB255 extends ColourAdapter {
 	}
 
 	@Override
-	public ColourRGB255 rgb255() {
+	public ColourRGB255 RGB255() {
 		return this;
 	}
 
 	@Override
-	public int rgb() {
+	public int RGB() {
 		return (r << 16) | (g << 8) | b;
 	}
 
 	@Override
-	public int argb() {
-		return 0xFF000000 | rgb();
+	public int ARGB() {
+		return 0xFF000000 | RGB();
 	}
 
 	@Override
-	public int rgba() {
+	public int RGBA() {
 		return (r << 24) | (g << 16) | (b << 8) | 0xFF;
 	}
 
 	@Override
-	public ColourRGB01 rgb01() {
+	public ColourRGB01 RGB01() {
 		return new ColourRGB01(r / 255f, g / 255f, b / 255f);
 	}
 }

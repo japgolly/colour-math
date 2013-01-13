@@ -25,17 +25,17 @@ public class ColourHSL01 extends ColourAdapter {
 	}
 
 	@Override
-	public ColourHSL01 hsl01() {
+	public ColourHSL01 HSL01() {
 		return this;
 	}
 
 	@Override
-	public ColourHSL255 hsl255() {
+	public ColourHSL255 HSL255() {
 		return new ColourHSL255((int) (h * 255f), (int) (s * 255f), (int) (l * 255f));
 	}
 
 	@Override
-	public ColourRGB01 rgb01() {
+	public ColourRGB01 RGB01() {
 		final float r, g, b;
 		if (s == 0f) {
 			r = g = b = l; // achromatic

@@ -14,27 +14,27 @@ import com.github.japgolly.colourmath.illuminant.Illuminant;
 @ThreadSafe
 public interface Colour {
 
-	int argb();
+	int ARGB();
 
-	int rgba();
+	int RGBA();
 
-	int rgb();
+	int RGB();
 
-	ColourRGB255 rgb255();
+	ColourRGB255 RGB255();
 
-	ColourRGB01 rgb01();
+	ColourRGB01 RGB01();
 
-	ColourHSL01 hsl01();
+	ColourHSL01 HSL01();
 
-	ColourHSL255 hsl255();
+	ColourHSL255 HSL255();
 
-	ColourXYZ xyz();
+	ColourXYZ XYZ();
 
-	ColourXYZ xyz(Illuminant illuminant);
+	ColourXYZ XYZ(Illuminant illuminant);
 
-	ColourLAB lab();
+	ColourLab Lab();
 
-	ColourLAB lab(Illuminant illuminant);
+	ColourLab Lab(Illuminant illuminant);
 
 	double deltaE_94(Colour otherColour);
 

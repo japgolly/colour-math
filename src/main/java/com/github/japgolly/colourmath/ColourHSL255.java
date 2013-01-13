@@ -25,17 +25,17 @@ public class ColourHSL255 extends ColourAdapter {
 	}
 
 	@Override
-	public ColourHSL255 hsl255() {
+	public ColourHSL255 HSL255() {
 		return this;
 	}
 
 	@Override
-	public ColourHSL01 hsl01() {
+	public ColourHSL01 HSL01() {
 		return new ColourHSL01(h / 255f, s / 255f, l / 255f);
 	}
 
 	@Override
-	public ColourRGB01 rgb01() {
-		return hsl01().rgb01();
+	public ColourRGB01 RGB01() {
+		return HSL01().RGB01();
 	}
 }
