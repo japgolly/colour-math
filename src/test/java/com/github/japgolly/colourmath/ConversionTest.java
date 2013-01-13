@@ -163,6 +163,7 @@ public class ConversionTest {
 	}
 
 	protected double getToleranceForDoubles(String d) {
+
 		if (from(d, "RGB255")) {
 			return 0.2;
 		}
@@ -172,11 +173,10 @@ public class ConversionTest {
 		if (from(d, "HSL01")) {
 			return to(d, "XYZ") ? 0.2 : 0.4;
 		}
-		return 0.005;
+		return 0.008;
 	}
 
 	protected int getToleranceForInts(String d) {
-		// if (from(d, "Luv|Lab|XYZ") && to(d, "RGB255|HSL255")) {
 		if (to(d, "RGB255|HSL255")) {
 			return 1;
 		} else {

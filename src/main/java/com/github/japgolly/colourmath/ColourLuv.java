@@ -24,7 +24,7 @@ public class ColourLuv extends ColourAdapter {
 
 	ColourLuv(double L, double u, double v, Illuminant illuminant) {
 		Conditions.assert100(L);
-		Conditions.assert_pm_100(u, v);
+		// Conditions.assert_pm_100(u, v); // TODO L*u*v* ranges > 100.
 		this.L = L;
 		this.u = u;
 		this.v = v;
