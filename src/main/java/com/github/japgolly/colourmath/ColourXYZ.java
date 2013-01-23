@@ -9,6 +9,7 @@ import lombok.ToString;
 import lombok.experimental.Wither;
 
 import com.github.japgolly.colourmath.illuminant.Illuminant;
+import com.github.japgolly.colourmath.illuminant.Surrounding;
 
 /**
  * TODOC: com.github.japgolly.colourmath.ColourXyz
@@ -138,5 +139,10 @@ public class ColourXYZ extends ColourAdapter {
 		final double v = L13 * (v_ - illuminant.v_());
 
 		return new ColourLuv(L, u, v, illuminant);
+	}
+
+	@Override
+	public ColourCIECAM02 CIECAM02(Illuminant illuminant, Surrounding surrounding) {
+		return new ColourCIECAM02(this, surrounding);
 	}
 }

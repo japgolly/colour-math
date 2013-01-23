@@ -4,6 +4,7 @@ import javax.annotation.concurrent.Immutable;
 import javax.annotation.concurrent.ThreadSafe;
 
 import com.github.japgolly.colourmath.illuminant.Illuminant;
+import com.github.japgolly.colourmath.illuminant.Surrounding;
 
 /**
  * TODOC: com.github.japgolly.colourmath.Colour
@@ -39,6 +40,10 @@ public interface Colour {
 	ColourLuv Luv();
 
 	ColourLuv Luv(Illuminant illuminant);
+
+	ColourCIECAM02 CIECAM02(Surrounding surrounding);
+
+	ColourCIECAM02 CIECAM02(Illuminant illuminant, Surrounding surrounding);
 
 	double deltaE_94(Colour otherColour);
 

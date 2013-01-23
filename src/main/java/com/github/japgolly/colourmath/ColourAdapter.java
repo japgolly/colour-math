@@ -2,6 +2,7 @@ package com.github.japgolly.colourmath;
 
 import com.github.japgolly.colourmath.illuminant.Illuminant;
 import com.github.japgolly.colourmath.illuminant.Illuminants;
+import com.github.japgolly.colourmath.illuminant.Surrounding;
 
 /**
  * TODOC: com.github.japgolly.colourmath.ColourAdapter
@@ -72,6 +73,16 @@ abstract class ColourAdapter implements Colour, Consts {
 	@Override
 	public ColourLuv Luv(Illuminant illuminant) {
 		return XYZ(illuminant).Luv(illuminant);
+	}
+
+	@Override
+	public final ColourCIECAM02 CIECAM02(Surrounding surrounding) {
+		return CIECAM02(Illuminants.getDefault(), surrounding);
+	}
+
+	@Override
+	public ColourCIECAM02 CIECAM02(Illuminant illuminant, Surrounding surrounding) {
+		return XYZ(illuminant).CIECAM02(illuminant, surrounding);
 	}
 
 	@Override

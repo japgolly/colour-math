@@ -23,6 +23,7 @@ import com.github.japgolly.colourmath.data.ColourVerification;
 import com.github.japgolly.colourmath.data.TestData;
 import com.github.japgolly.colourmath.illuminant.Illuminant;
 import com.github.japgolly.colourmath.illuminant.Illuminants;
+import com.github.japgolly.colourmath.illuminant.Surrounding;
 
 /**
  * TODOC: com.github.japgolly.colourmath.Blah
@@ -52,6 +53,9 @@ public class ConversionTest {
 	public void setup() {
 		Illuminants.setDefault(Illuminants.CIE1931.D65_LESS_PRECISE);
 		testData = TestData.TEST_DATA.get(dataName);
+
+		// System.out.println(ColourFactory.getInstance().RGB(0xFFFFFF).CIECAM02(Surrounding.DARK));
+		System.out.println(ColourFactory.getInstance().XYZ(43.29106, 35.80083, 4.24324).CIECAM02(Surrounding.DARK));
 	}
 
 	@Test

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
 import com.github.japgolly.colourmath.Colour;
+import com.github.japgolly.colourmath.ColourCIECAM02;
 import com.github.japgolly.colourmath.ColourFactory;
 import com.github.japgolly.colourmath.ColourHSL01;
 import com.github.japgolly.colourmath.ColourHSL255;
@@ -14,6 +15,7 @@ import com.github.japgolly.colourmath.ColourRGB01;
 import com.github.japgolly.colourmath.ColourRGB255;
 import com.github.japgolly.colourmath.ColourXYZ;
 import com.github.japgolly.colourmath.illuminant.Illuminant;
+import com.github.japgolly.colourmath.illuminant.Surrounding;
 
 /**
  * TODOC: com.github.japgolly.colourmath.ColourVerification
@@ -74,6 +76,18 @@ public class ColourVerification implements Colour {
 
 	public Double getSpecialCaseTolerance(String desc, Colour actual) {
 		return null;
+	}
+
+	@Override
+	public ColourCIECAM02 CIECAM02(Illuminant illuminant, Surrounding surrounding) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ColourCIECAM02 CIECAM02(Surrounding surrounding) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException();
 	}
 
 }
